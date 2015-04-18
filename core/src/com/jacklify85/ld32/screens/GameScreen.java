@@ -54,6 +54,8 @@ public class GameScreen implements Screen{
 	public void render(float delta) {
 		doInput();
 		// Set projection matrix and render
+		this.camera.position.set(GameScreen.player.getPosition(), this.camera.position.z);
+		this.camera.update();
 		RenderUtils.setMatrix(this.camera.combined);
 		RenderUtils.beginRendering();
 		//////////////////

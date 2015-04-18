@@ -33,4 +33,8 @@ public class RenderUtils {
 	public static void setMatrix(Matrix4 projection) {
 		sBatch.setProjectionMatrix(projection);
 	}
+
+	public static BitmapFont getFont() {
+		return bDefaultFont;
+	}
 }
