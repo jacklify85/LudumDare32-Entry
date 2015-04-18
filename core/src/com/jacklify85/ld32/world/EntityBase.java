@@ -89,6 +89,7 @@ public abstract class EntityBase implements IGameObject{
 
 	protected abstract void died();
 
+	@Override
 	public Vector2 getPosition() {
 		return this.position;
 	}

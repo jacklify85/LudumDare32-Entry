@@ -7,7 +7,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
@@ -25,7 +27,7 @@ public class GWorld implements Disposable {
 	//private RayHandler rHandler;
 
 	public GWorld() {
-		this.world = new World(new Vector2(0.0f, 0.0f), true);
+		this.world = new World(new Vector2(0.0f, -9.0f), true);
 		//this.rHandler = new RayHandler(world);
 		//RayHandler.useDiffuseLight(true);
 	}
@@ -74,13 +76,22 @@ public class GWorld implements Disposable {
 	
 	public void addObject(IGameObject object) {
 		BodyDef bDef = new BodyDef();
+		bDef.position.set(object.getPosition());
 		bDef.allowSleep = true;
 		bDef.bullet = false;
+		bDef.type = BodyType.DynamicBody;
+		bDef.gravityScale = 0.0f;
 		FixtureDef fDef = new FixtureDef();
-		
+		fDef.isSensor = true;
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox(object.getWidth() / 2, object.getHeight() / 2);
+		fDef.shape = shape;
 		Body b = this.world.createBody(bDef);
+		b.createFixture(fDef);
 		b.setUserData(object);
 		object.setBody(b);
+		// Dispose shape
+		shape.dispose();
 	}
 
 	@Override

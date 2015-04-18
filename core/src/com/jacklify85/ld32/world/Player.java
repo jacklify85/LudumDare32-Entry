@@ -1,6 +1,5 @@
 package com.jacklify85.ld32.world;
 
-import com.badlogic.gdx.Gdx;
 import com.jacklify85.ld32.LDGame;
 import com.jacklify85.ld32.util.RenderUtils;
 
@@ -17,7 +16,6 @@ public class Player extends EntityBase{
 
 	@Override
 	public void draw() {
-		Gdx.app.log("LDGAME:", "DRAW CALLED");
 		RenderUtils.drawTexture(LDGame.player, this.getX(), this.getY());
 	}
 
