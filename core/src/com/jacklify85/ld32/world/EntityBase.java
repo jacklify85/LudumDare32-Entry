@@ -1,6 +1,7 @@
 package com.jacklify85.ld32.world;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 
 public abstract class EntityBase implements IGameObject{
 
@@ -8,6 +9,7 @@ public abstract class EntityBase implements IGameObject{
 	protected int health, maxHealth;
 	private int id;
 	private boolean isDead = false;
+	private Body body = null;
 	
 	public EntityBase(float x, float y, int health, int maxHealth, int id) {
 		this.position = new Vector2(x, y);
@@ -73,5 +75,21 @@ public abstract class EntityBase implements IGameObject{
 		return this.isDead;
 	}
 	
+	
+	
+	@Override
+	public Body getBody() {
+		return this.body;
+	}
+
+	@Override
+	public void setBody(Body b) {
+		this.body = b;
+	}
+
 	protected abstract void died();
+
+	public Vector2 getPosition() {
+		return this.position;
+	}
 }
