@@ -1,6 +1,7 @@
 package com.jacklify85.ld32.world;
 
 import com.jacklify85.ld32.LDGame;
+import com.jacklify85.ld32.screens.GameScreen;
 import com.jacklify85.ld32.util.RenderUtils;
 
 public class Player extends EntityBase{
@@ -31,7 +32,7 @@ public class Player extends EntityBase{
 
 	@Override
 	protected void died() {
-		
+		GameScreen.alive = false;
 	}
 
 }

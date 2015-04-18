@@ -15,10 +15,11 @@ public class GameScreen implements Screen{
 	private GWorld world;
 	private Player player;
 	private boolean isPaused = false;
+	private int score = 0;
+	public static volatile boolean alive = true;
 	
 	public GameScreen() {
 		this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
 		this.world = new GWorld();
 		this.player = new Player(159, 122, 21);
 		this.world.addObject(player);
@@ -36,7 +37,11 @@ public class GameScreen implements Screen{
 		RenderUtils.setMatrix(this.camera.combined);
 		RenderUtils.beginRendering();
 		//////////////////
-		this.world.render();
+		if (!this.isPaused) {
+			this.world.render();
+		} else {
+			RenderUtils.renderText("Game is paused! To resume press escape!", 50, 25);
+		}
 		/////////////////
 		RenderUtils.stopRendering();
 	}

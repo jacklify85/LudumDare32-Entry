@@ -1,6 +1,8 @@
 package com.jacklify85.ld32.world;
 
+import com.jacklify85.ld32.LDGame;
 import com.jacklify85.ld32.ai.Pathfinder;
+import com.jacklify85.ld32.util.RenderUtils;
 
 public class Zombie extends EntityBase{
 
@@ -18,25 +20,22 @@ public class Zombie extends EntityBase{
 
 	@Override
 	public void draw() {
-		// TODO Auto-generated method stub
-		
+		// TODO: Give zombies their own texture and replace extremely ugly placeholders
+		RenderUtils.drawTexture(LDGame.player, this.getX(), this.getY());
 	}
 
 	@Override
 	public float getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return LDGame.player.getHeight();
 	}
 
 	@Override
 	public float getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return LDGame.player.getWidth();
 	}
 
 	@Override
 	protected void died() {
-		// TODO Auto-generated method stub
 		
 	}
 
