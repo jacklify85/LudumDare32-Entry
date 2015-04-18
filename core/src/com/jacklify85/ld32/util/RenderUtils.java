@@ -9,23 +9,23 @@ public class RenderUtils {
 	private static SpriteBatch sBatch = new SpriteBatch();
 	private static BitmapFont bDefaultFont = new BitmapFont();
 	
-	public void renderText(String msg, float x, float y) {
+	public static void renderText(String msg, float x, float y) {
 		bDefaultFont.draw(sBatch, msg, x, y);
 	}
 	
-	public void renderText(BitmapFont font, String msg, float x, float y) {
+	public static void renderText(BitmapFont font, String msg, float x, float y) {
 		font.draw(sBatch, msg, x, y);
 	}
 	
-	public void drawTexture(Texture texture, float x, float y) {
+	public static void drawTexture(Texture texture, float x, float y) {
 		sBatch.draw(texture, x, y);
 	}
 	
-	public void beginRendering() {
+	public static void beginRendering() {
 		sBatch.begin();
 	}
 	
-	public void stopRendering() {
+	public static void stopRendering() {
 		sBatch.end();
 	}
 }
