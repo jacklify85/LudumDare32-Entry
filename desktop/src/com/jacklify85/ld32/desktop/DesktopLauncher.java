@@ -9,6 +9,8 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.allowSoftwareMode = true;
 		config.vSyncEnabled = true;
+		config.width = 1024;
+		config.height = 720;
 		new LwjglApplication(new LDGame(), config);
 	}
 }

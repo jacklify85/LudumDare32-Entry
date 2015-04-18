@@ -1,5 +1,7 @@
 package com.jacklify85.ld32.screens;
 
+import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
@@ -7,6 +9,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.jacklify85.ld32.LDGame;
+import com.jacklify85.ld32.pickups.HealthPickup;
 import com.jacklify85.ld32.util.RenderUtils;
 import com.jacklify85.ld32.world.GWorld;
 import com.jacklify85.ld32.world.Player;
@@ -29,9 +32,17 @@ public class GameScreen implements Screen{
 		GameScreen.player = new Player(159, 122, 21);
 		GameScreen.world.addObject(player);
 		this.game = game;
-		Zombie zombie = new Zombie(50, 70, 22);
-		this.world.addObject(zombie);
-		this.box2d = new Box2DDebugRenderer();
+		Random random = new Random();
+		for (int i = 0; i < 50; i++) {
+			Zombie zombie = new Zombie(random.nextInt(500), random.nextInt(1000), 22 + i);
+			this.world.addObject(zombie);
+			this.box2d = new Box2DDebugRenderer();
+		}
+		
+		for (int i = 0; i < 10; i++) {
+			HealthPickup hPickup = new HealthPickup(random.nextInt(500), random.nextInt(300), 214);
+			this.world.addObject(hPickup);
+		}
 	}
 	
 	@Override
@@ -47,7 +58,7 @@ public class GameScreen implements Screen{
 		RenderUtils.beginRendering();
 		//////////////////
 		if (!this.isPaused) {
-			this.box2d.render(this.world.world, this.camera.combined);
+			//this.box2d.render(this.world.world, this.camera.combined);
 			GameScreen.world.render();
 			if (GameScreen.alive == false) {
 				// player died, show dead screen

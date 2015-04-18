@@ -13,7 +13,6 @@ public class Player extends EntityBase{
 
 	@Override
 	public void update() {
-		Gdx.app.log("LDGAME", "PHEALTH: " + this.health);
 	}
 
 	@Override

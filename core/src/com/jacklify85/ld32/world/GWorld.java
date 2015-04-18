@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.jacklify85.ld32.physics.Box2DContactManager;
+import com.jacklify85.ld32.pickups.PickupBase;
 
 public class GWorld implements Disposable {
 	
@@ -60,9 +61,20 @@ public class GWorld implements Disposable {
 						eBase.die();
 					} else {
 						// TODO: IMPLEMENT CLEANUP LOGIC
+						this.cleanupBody(body);
 					}
 				}
 				eBase.draw();
+			} else if (gObject instanceof PickupBase) {
+				PickupBase pBase = (PickupBase)gObject;
+				
+				// check if pickup is used
+				if (pBase.shouldDestroy()) {
+					this.cleanupBody(body);
+					continue;
+				}
+				// render pickup
+				pBase.draw();
 			}
 		}
 	}
@@ -80,11 +92,16 @@ public class GWorld implements Disposable {
 		BodyDef bDef = new BodyDef();
 		bDef.position.set(object.getPosition());
 		bDef.allowSleep = true;
-		bDef.bullet = false;
-		bDef.type = BodyType.DynamicBody;
+		bDef.bullet = true;
+		bDef.type = BodyType.StaticBody;
+		if (object instanceof Player) {
+			bDef.type = BodyType.DynamicBody;
+		}
 		bDef.gravityScale = 0.0f;
 		FixtureDef fDef = new FixtureDef();
 		fDef.isSensor = false;
+		fDef.friction = 0.5f;
+		fDef.density = 3.5f;
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(object.getWidth() / 2, object.getHeight() / 2);
 		fDef.shape = shape;
