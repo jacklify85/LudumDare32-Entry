@@ -99,4 +99,8 @@ public class GWorld implements Disposable {
 		//this.rHandler.dispose();
 		this.world.dispose();
 	}
+	
+	public void cleanupBody(Body b) {
+		this.world.destroyBody(b);
+	}
 }

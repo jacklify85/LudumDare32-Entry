@@ -21,12 +21,12 @@ public class Player extends EntityBase{
 
 	@Override
 	public float getHeight() {
-		return 0;
+		return LDGame.player.getHeight();
 	}
 
 	@Override
 	public float getWidth() {
-		return 0;
+		return LDGame.player.getWidth();
 	}
 
 	@Override
