@@ -7,6 +7,7 @@ public abstract class EntityBase implements IGameObject{
 	private Vector2 position;
 	protected int health, maxHealth;
 	private int id;
+	private boolean isDead = false;
 	
 	public EntityBase(float x, float y, int health, int maxHealth, int id) {
 		this.position = new Vector2(x, y);
@@ -62,4 +63,15 @@ public abstract class EntityBase implements IGameObject{
 	public void setMaxHealth(int mHealth) {
 		this.maxHealth = mHealth;
 	}
+	
+	public void die() {
+		this.isDead = true;
+		this.died();
+	}
+	
+	public boolean isDead() {
+		return this.isDead;
+	}
+	
+	protected abstract void died();
 }

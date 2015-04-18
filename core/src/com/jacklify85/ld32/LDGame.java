@@ -2,8 +2,10 @@ package com.jacklify85.ld32;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.physics.box2d.Box2D;
 import com.jacklify85.ld32.util.RenderUtils;
 
 public class LDGame extends ApplicationAdapter {
@@ -11,10 +13,17 @@ public class LDGame extends ApplicationAdapter {
 	// Do some logging
 	private FPSLogger logger;
 	
+	// Asset management
+	private AssetManager _aManager;
+	
 	@Override
 	public void create () {
 		Gdx.app.log("LDGAME", "INIT");
 		this.logger = new FPSLogger();
+		this._aManager = new AssetManager();
+		
+		// Init BOX2D
+		Box2D.init();
 	}
 
 	@Override
