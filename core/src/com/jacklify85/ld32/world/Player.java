@@ -1,6 +1,5 @@
 package com.jacklify85.ld32.world;
 
-import com.badlogic.gdx.Gdx;
 import com.jacklify85.ld32.LDGame;
 import com.jacklify85.ld32.screens.GameScreen;
 import com.jacklify85.ld32.util.RenderUtils;

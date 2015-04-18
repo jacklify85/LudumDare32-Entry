@@ -7,7 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+//import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.jacklify85.ld32.LDGame;
 import com.jacklify85.ld32.pickups.HealthPickup;
 import com.jacklify85.ld32.util.RenderUtils;
@@ -24,7 +24,7 @@ public class GameScreen implements Screen{
 	private int score = 0;
 	public static volatile boolean alive = true;
 	private LDGame game;
-	private Box2DDebugRenderer box2d;
+	//private Box2DDebugRenderer box2d;
 	
 	public GameScreen(LDGame game) {
 		this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -35,13 +35,13 @@ public class GameScreen implements Screen{
 		Random random = new Random();
 		for (int i = 0; i < 50; i++) {
 			Zombie zombie = new Zombie(random.nextInt(500), random.nextInt(1000), 22 + i);
-			this.world.addObject(zombie);
-			this.box2d = new Box2DDebugRenderer();
+			GameScreen.world.addObject(zombie);
+			//this.box2d = new Box2DDebugRenderer();
 		}
 		
 		for (int i = 0; i < 10; i++) {
-			HealthPickup hPickup = new HealthPickup(random.nextInt(500), random.nextInt(300), 214);
-			this.world.addObject(hPickup);
+			HealthPickup hPickup = new HealthPickup(random.nextInt(500), random.nextInt(300));
+			GameScreen.world.addObject(hPickup);
 		}
 	}
 	

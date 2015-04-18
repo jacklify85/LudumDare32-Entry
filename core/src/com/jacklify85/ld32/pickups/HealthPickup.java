@@ -7,8 +7,8 @@ import com.jacklify85.ld32.world.EntityBase;
 public class HealthPickup extends PickupBase{
 
 	
-	public HealthPickup(float x, float y, int id) {
-		super(x, y, id);
+	public HealthPickup(float x, float y) {
+		super(x, y);
 	}
 
 	@Override

@@ -10,11 +10,9 @@ public abstract class PickupBase implements IGameObject {
 	private Vector2 position;
 	private Body body;
 	private boolean shouldDestroy = false;
-	private int id;
 	
-	public PickupBase(float x, float y, int id) {
+	public PickupBase(float x, float y) {
 		this.position = new Vector2(x, y);
-		this.id = id;
 	}
 	protected abstract void onUse(EntityBase e);
 

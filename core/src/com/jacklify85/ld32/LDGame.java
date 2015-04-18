@@ -2,7 +2,6 @@ package com.jacklify85.ld32;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,8 +14,8 @@ public class LDGame extends Game {
 	// Do some logging
 	private FPSLogger logger;
 	
-	// Asset management
-	private AssetManager _aManager;
+	// Asset management (crappy)
+	
 	public static Texture player = null;
 	public static Texture healthPickup = null;
 	
@@ -29,7 +28,6 @@ public class LDGame extends Game {
 		Gdx.app.log("LDGAME", "Native Heap: " + Gdx.app.getNativeHeap());
 		Gdx.app.log("LDGAME", "Java Heap: " + Gdx.app.getJavaHeap());
 		this.logger = new FPSLogger();
-		this._aManager = new AssetManager();
 		
 		// Init BOX2D
 		Box2D.init();

@@ -1,14 +1,10 @@
 package com.jacklify85.ld32.physics;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactFilter;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.jacklify85.ld32.pickups.PickupBase;
-import com.jacklify85.ld32.world.EntityBase;
 import com.jacklify85.ld32.world.IGameObject;
 import com.jacklify85.ld32.world.Player;
 import com.jacklify85.ld32.world.Zombie;
