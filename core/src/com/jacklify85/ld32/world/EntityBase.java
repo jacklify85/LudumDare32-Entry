@@ -17,7 +17,7 @@ public abstract class EntityBase implements IGameObject{
 		this.maxHealth = maxHealth;
 		this.id = id;
 	}
-	
+
 	public float getX() {
 		return this.position.x;
 	}

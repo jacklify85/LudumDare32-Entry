@@ -5,24 +5,33 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.jacklify85.ld32.LDGame;
 import com.jacklify85.ld32.util.RenderUtils;
 import com.jacklify85.ld32.world.GWorld;
 import com.jacklify85.ld32.world.Player;
+import com.jacklify85.ld32.world.Zombie;
 
 public class GameScreen implements Screen{
 
 	private Camera camera = null;
-	private GWorld world;
-	private Player player;
+	public static GWorld world;
+	public static Player player;
 	private boolean isPaused = false;
 	private int score = 0;
 	public static volatile boolean alive = true;
+	private LDGame game;
+	private Box2DDebugRenderer box2d;
 	
-	public GameScreen() {
+	public GameScreen(LDGame game) {
 		this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		this.world = new GWorld();
-		this.player = new Player(159, 122, 21);
-		this.world.addObject(player);
+		GameScreen.world = new GWorld();
+		GameScreen.player = new Player(159, 122, 21);
+		GameScreen.world.addObject(player);
+		this.game = game;
+		Zombie zombie = new Zombie(50, 70, 22);
+		this.world.addObject(zombie);
+		this.box2d = new Box2DDebugRenderer();
 	}
 	
 	@Override
@@ -38,7 +47,12 @@ public class GameScreen implements Screen{
 		RenderUtils.beginRendering();
 		//////////////////
 		if (!this.isPaused) {
-			this.world.render();
+			this.box2d.render(this.world.world, this.camera.combined);
+			GameScreen.world.render();
+			if (GameScreen.alive == false) {
+				// player died, show dead screen
+				this.game.setScreen(new DeadScreen(score));
+			}
 		} else {
 			RenderUtils.renderText("Game is paused! To resume press escape!", 50, 25);
 		}
@@ -48,23 +62,23 @@ public class GameScreen implements Screen{
 
 	private void doInput() {
 		// TODO: IMPLEMENT MOBILE TOUCH SCREEN FOR ANDROID
-		if (this.player == null) {
+		if (player == null) {
 			return;
 		}
 		if (Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.UP)) {
-			this.world.doMovement(this.player, this.player.getX(), this.player.getY() + 10.5f);
+			GameScreen.world.doMovement(player, player.getX(), player.getY() + 10.5f);
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.A) || Gdx.input.isKeyPressed(Keys.LEFT)) {
-			this.world.doMovement(this.player, this.player.getX() - 10.5f, this.player.getY());
+			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX() - 10.5f, GameScreen.player.getY());
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.D) || Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			this.world.doMovement(this.player, this.player.getX() + 10.5f, this.player.getY());
+			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX() + 10.5f, GameScreen.player.getY());
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.S) || Gdx.input.isKeyPressed(Keys.DOWN)) {
-			this.world.doMovement(this.player, this.player.getX(), this.player.getY() - 10.5f);
+			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX(), GameScreen.player.getY() - 10.5f);
 		}
 		
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
@@ -75,7 +89,7 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		
+	
 	}
 
 	@Override
@@ -95,8 +109,8 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void dispose() {
-		if (this.world != null) {
-			this.world.dispose();
+		if (GameScreen.world != null) {
+			GameScreen.world.dispose();
 		}
 	}
 }

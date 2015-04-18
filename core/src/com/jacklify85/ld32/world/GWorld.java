@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
+import com.jacklify85.ld32.physics.Box2DContactManager;
 
 public class GWorld implements Disposable {
 	
@@ -20,7 +21,7 @@ public class GWorld implements Disposable {
 	private static final int VELOCITY_ITERATIONS = 4;
 	private static final int POSITION_ITERATIONS = 5;
 	
-	private World world;
+	public World world;
 	private Array<Body> bodies = new Array<Body>();
 	
 	// BOX2D LIGHTS LOGIC
@@ -28,6 +29,7 @@ public class GWorld implements Disposable {
 
 	public GWorld() {
 		this.world = new World(new Vector2(0.0f, -9.0f), true);
+		this.world.setContactListener(new Box2DContactManager());
 		//this.rHandler = new RayHandler(world);
 		//RayHandler.useDiffuseLight(true);
 	}
@@ -82,7 +84,7 @@ public class GWorld implements Disposable {
 		bDef.type = BodyType.DynamicBody;
 		bDef.gravityScale = 0.0f;
 		FixtureDef fDef = new FixtureDef();
-		fDef.isSensor = true;
+		fDef.isSensor = false;
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox(object.getWidth() / 2, object.getHeight() / 2);
 		fDef.shape = shape;

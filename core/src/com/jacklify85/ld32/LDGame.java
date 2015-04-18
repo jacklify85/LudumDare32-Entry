@@ -29,7 +29,7 @@ public class LDGame extends Game {
 		Box2D.init();
 		player = new Texture("Sprite-0001.png");
 		// set screen to game screen
-		this.setScreen(new GameScreen());
+		this.setScreen(new GameScreen(this));
 	}
 
 	@Override

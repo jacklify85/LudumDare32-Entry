@@ -19,4 +19,5 @@ public class Pathfinder {
 	public float getMovementY() {
 		return this.target.getPosition().y - this.host.getPosition().y;
 	}
+
 }
