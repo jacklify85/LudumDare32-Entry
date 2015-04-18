@@ -68,7 +68,7 @@ public class GWorld implements Disposable {
 			Gdx.app.error("LDGAME", "Tried to update position for entity (ID = " + eBase.getId() + " ). No body found.");
 			return;
 		}
-		eBase.getBody().setTransform(eBase.getPosition(), eBase.getBody().getAngle());
+		eBase.getBody().setTransform(x, y, eBase.getBody().getAngle());
 		eBase.getBody().setActive(true);
 	}
 	
@@ -80,6 +80,7 @@ public class GWorld implements Disposable {
 		
 		Body b = this.world.createBody(bDef);
 		b.setUserData(object);
+		object.setBody(b);
 	}
 
 	@Override
