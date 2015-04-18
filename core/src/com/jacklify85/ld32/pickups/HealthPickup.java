@@ -1,12 +1,12 @@
 package com.jacklify85.ld32.pickups;
 
 import com.jacklify85.ld32.LDGame;
+import com.jacklify85.ld32.screens.GameScreen;
 import com.jacklify85.ld32.util.RenderUtils;
 import com.jacklify85.ld32.world.EntityBase;
 
 public class HealthPickup extends PickupBase{
 
-	
 	public HealthPickup(float x, float y) {
 		super(x, y);
 	}
@@ -28,6 +28,7 @@ public class HealthPickup extends PickupBase{
 
 	@Override
 	protected void onUse(EntityBase e) {
+		GameScreen.score += 10;
 		e.setHealth(e.getMaxHealth());
 	}
 	

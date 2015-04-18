@@ -4,6 +4,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.jacklify85.ld32.pickups.HealthPickup;
 import com.jacklify85.ld32.pickups.PickupBase;
 import com.jacklify85.ld32.world.IGameObject;
 import com.jacklify85.ld32.world.Player;
@@ -28,6 +29,10 @@ public class Box2DContactManager implements ContactListener {
 				player.damage(3);
 			} else if (gObjectB instanceof PickupBase) {
 				Player player = (Player)gObjectA;
+				// prevent player from using health boost pickup if health is full
+				if (player.getHealth() == player.getMaxHealth() && gObjectB instanceof HealthPickup) {
+					return;
+				}
 				PickupBase pickup = (PickupBase)gObjectB;
 				pickup.use(player);
 			}

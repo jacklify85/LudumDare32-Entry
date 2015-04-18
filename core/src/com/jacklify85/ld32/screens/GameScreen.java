@@ -21,7 +21,7 @@ public class GameScreen implements Screen{
 	public static GWorld world;
 	public static Player player;
 	private boolean isPaused = false;
-	private int score = 0;
+	public static int score = 0;
 	public static volatile boolean alive = true;
 	private LDGame game;
 	//private Box2DDebugRenderer box2d;

@@ -25,7 +25,8 @@ public class LDGame extends Game {
 	
 	// Stage2d
 	private Stage stage = null;
-	private Label fpsLabel, healthLabel = null;
+	private Label fpsLabel, healthLabel, scoreLabel = null;
+	
 	@Override
 	public void create () {
 		Gdx.app.log("LDGAME", "INIT");
@@ -48,9 +49,12 @@ public class LDGame extends Game {
 	    this.fpsLabel.setPosition(10, 700);
 	    this.healthLabel = new Label("Health: 0 / 0", lstyle);
 	    this.healthLabel.setPosition(10, 20);
+	    this.scoreLabel = new Label("Score: 0", lstyle);
+	    this.scoreLabel.setPosition(10, 40);
 	    
 	    this.stage.addActor(this.fpsLabel);
 	    this.stage.addActor(this.healthLabel);
+	    this.stage.addActor(this.scoreLabel);
 	    
 	    
 		// Init BOX2D
@@ -70,6 +74,7 @@ public class LDGame extends Game {
 		// Start rendering
 		this.fpsLabel.setText("FPS: " + Gdx.graphics.getFramesPerSecond());
 		this.healthLabel.setText("Health: " + GameScreen.player.getHealth() + " / " + GameScreen.player.getMaxHealth());
+		this.scoreLabel.setText("Score: " + GameScreen.score);
 		stage.act();
 		super.render();
 		stage.draw();
