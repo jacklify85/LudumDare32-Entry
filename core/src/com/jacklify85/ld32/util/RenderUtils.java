@@ -3,6 +3,7 @@ package com.jacklify85.ld32.util;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Matrix4;
 
 public class RenderUtils {
 
@@ -27,5 +28,9 @@ public class RenderUtils {
 	
 	public static void stopRendering() {
 		sBatch.end();
+	}
+	
+	public static void setMatrix(Matrix4 projection) {
+		sBatch.setProjectionMatrix(projection);
 	}
 }

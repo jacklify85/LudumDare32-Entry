@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.jacklify85.ld32.screens.GameScreen;
 import com.jacklify85.ld32.util.RenderUtils;
@@ -16,6 +17,7 @@ public class LDGame extends Game {
 	
 	// Asset management
 	private AssetManager _aManager;
+	public static Texture player = null;
 	
 	@Override
 	public void create () {
@@ -25,7 +27,7 @@ public class LDGame extends Game {
 		
 		// Init BOX2D
 		Box2D.init();
-		
+		player = new Texture("Sprite-0001.png");
 		// set screen to game screen
 		this.setScreen(new GameScreen());
 	}
