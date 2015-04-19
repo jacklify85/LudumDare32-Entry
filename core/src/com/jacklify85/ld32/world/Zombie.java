@@ -43,22 +43,25 @@ public class Zombie extends EntityBase{
 
 	@Override
 	public void draw() {
-		// TODO: Give zombies their own texture and replace extremely ugly placeholders
-		RenderUtils.drawTexture(LDGame.player, this.getX(), this.getY());
+		RenderUtils.drawTexture(LDGame.zombie, this.getX(), this.getY());
 	}
 
 	@Override
 	public float getHeight() {
-		return LDGame.player.getHeight();
+		return LDGame.zombie.getHeight();
 	}
 
 	@Override
 	public float getWidth() {
-		return LDGame.player.getWidth();
+		return LDGame.zombie.getWidth();
 	}
 
 	@Override
 	protected void died() {
+		GameScreen.score += 30;
+	}
+
+	public void ignite() {
 		
 	}
 

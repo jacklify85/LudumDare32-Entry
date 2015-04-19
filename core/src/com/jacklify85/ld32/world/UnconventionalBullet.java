@@ -18,12 +18,12 @@ public class UnconventionalBullet extends EntityBase{
 
 	@Override
 	public float getHeight() {
-		return 0;
+		return 1;
 	}
 
 	@Override
 	public float getWidth() {
-		return 0;
+		return 1;
 	}
 
 	@Override

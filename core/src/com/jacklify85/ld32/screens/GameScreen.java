@@ -7,7 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-//import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.jacklify85.ld32.LDGame;
 import com.jacklify85.ld32.pickups.HealthPickup;
 import com.jacklify85.ld32.util.RenderUtils;
@@ -24,7 +24,7 @@ public class GameScreen implements Screen{
 	public static int score = 0;
 	public static volatile boolean alive = true;
 	private LDGame game;
-	//private Box2DDebugRenderer box2d;
+	private Box2DDebugRenderer box2d;
 	
 	public GameScreen(LDGame game) {
 		this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -34,9 +34,9 @@ public class GameScreen implements Screen{
 		this.game = game;
 		Random random = new Random();
 		for (int i = 0; i < 50; i++) {
-			Zombie zombie = new Zombie(random.nextInt(500), random.nextInt(1000), 22 + i);
+			Zombie zombie = new Zombie(random.nextInt(5000) * random.nextFloat(), random.nextInt(1000) * random.nextFloat(), 22 + i);
 			GameScreen.world.addObject(zombie);
-			//this.box2d = new Box2DDebugRenderer();
+			this.box2d = new Box2DDebugRenderer();
 		}
 		
 		for (int i = 0; i < 10; i++) {
@@ -60,7 +60,7 @@ public class GameScreen implements Screen{
 		RenderUtils.beginRendering();
 		//////////////////
 		if (!this.isPaused) {
-			//this.box2d.render(this.world.world, this.camera.combined);
+			//this.box2d.render(world.world, this.camera.combined);
 			GameScreen.world.render();
 			if (GameScreen.alive == false) {
 				// player died, show dead screen
@@ -79,19 +79,19 @@ public class GameScreen implements Screen{
 			return;
 		}
 		if (Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.UP)) {
-			GameScreen.world.doMovement(player, player.getX(), player.getY() + 10.5f);
+			GameScreen.world.doMovement(player, player.getX(), player.getY() + 2.5f);
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.A) || Gdx.input.isKeyPressed(Keys.LEFT)) {
-			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX() - 10.5f, GameScreen.player.getY());
+			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX() - 2.5f, GameScreen.player.getY());
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.D) || Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX() + 10.5f, GameScreen.player.getY());
+			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX() + 2.5f, GameScreen.player.getY());
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.S) || Gdx.input.isKeyPressed(Keys.DOWN)) {
-			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX(), GameScreen.player.getY() - 10.5f);
+			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX(), GameScreen.player.getY() - 2.5f);
 		}
 		
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {

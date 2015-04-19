@@ -6,12 +6,12 @@ import com.badlogic.gdx.physics.box2d.Body;
 public abstract class EntityBase implements IGameObject{
 
 	private Vector2 position;
-	protected int health, maxHealth;
+	protected float health, maxHealth;
 	private int id;
 	private boolean isDead = false;
 	private Body body = null;
 	
-	public EntityBase(float x, float y, int health, int maxHealth, int id) {
+	public EntityBase(float x, float y, float health, float maxHealth, int id) {
 		this.position = new Vector2(x, y);
 		this.health = health;
 		this.maxHealth = maxHealth;
@@ -42,27 +42,27 @@ public abstract class EntityBase implements IGameObject{
 		return this.id;
 	}
 	
-	public int getHealth() {
+	public float getHealth() {
 		return this.health;
 	}
 	
-	public int getMaxHealth() {
+	public float getMaxHealth() {
 		return this.maxHealth;
 	}
 	
-	public void damage(int amount) {
+	public void damage(float amount) {
 		this.health -= amount;
 	}
 	
-	public void heal (int amount) {
+	public void heal (float amount) {
 		this.health += amount;
 	}
 	
-	public void setHealth(int health) {
+	public void setHealth(float health) {
 		this.health = health;
 	}
 	
-	public void setMaxHealth(int mHealth) {
+	public void setMaxHealth(float mHealth) {
 		this.maxHealth = mHealth;
 	}
 	

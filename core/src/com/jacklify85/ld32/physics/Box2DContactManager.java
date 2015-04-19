@@ -6,12 +6,16 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.jacklify85.ld32.pickups.HealthPickup;
 import com.jacklify85.ld32.pickups.PickupBase;
+import com.jacklify85.ld32.screens.GameScreen;
 import com.jacklify85.ld32.world.IGameObject;
 import com.jacklify85.ld32.world.Player;
+import com.jacklify85.ld32.world.UnconventionalBullet;
 import com.jacklify85.ld32.world.Zombie;
 
 public class Box2DContactManager implements ContactListener {
 
+	public static boolean isContacted = false;
+	
 	@Override
 	public void beginContact(Contact contact) {
 		IGameObject gObjectA = (IGameObject)contact.getFixtureA().getBody().getUserData();
@@ -27,6 +31,7 @@ public class Box2DContactManager implements ContactListener {
 			if (gObjectB instanceof Zombie) {
 				Player player = (Player)gObjectA;
 				player.damage(3);
+				isContacted = true;
 			} else if (gObjectB instanceof PickupBase) {
 				Player player = (Player)gObjectA;
 				// prevent player from using health boost pickup if health is full
@@ -40,13 +45,31 @@ public class Box2DContactManager implements ContactListener {
 			if (gObjectB instanceof Player) {
 				Player player = (Player)gObjectB;
 				player.damage(3);
+				isContacted = true;
+			} else if (gObjectB instanceof UnconventionalBullet) {
+				Zombie zombie = (Zombie)gObjectA;
+				zombie.damage(10);
+				zombie.ignite();
+				UnconventionalBullet bullet = (UnconventionalBullet)gObjectB;
+				bullet.setHealth(0);
+				GameScreen.score += 15;
+			} else if (gObjectB instanceof Zombie) {
+				contact.getFixtureA().getBody().applyForce(20f, 10f, 1f, 1f, true);
+			}
+		} else if (gObjectA instanceof UnconventionalBullet) {
+			if (gObjectB instanceof Zombie) {
+				Zombie zombie = (Zombie)gObjectB;
+				zombie.damage(10);
+				zombie.ignite();
+				GameScreen.score += 15;
 			}
 		}
+		
 	}
 
 	@Override
 	public void endContact(Contact contact) {
-		
+		isContacted = false;
 	}
 
 	@Override

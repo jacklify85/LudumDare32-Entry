@@ -22,10 +22,12 @@ public class LDGame extends Game {
 	
 	public static Texture player = null;
 	public static Texture healthPickup = null;
+	public static Texture zombie = null;
+	
 	
 	// Stage2d
 	private Stage stage = null;
-	private Label fpsLabel, healthLabel, scoreLabel = null;
+	private Label fpsLabel, healthLabel, scoreLabel, ammoLabel = null;
 	
 	@Override
 	public void create () {
@@ -51,16 +53,19 @@ public class LDGame extends Game {
 	    this.healthLabel.setPosition(10, 20);
 	    this.scoreLabel = new Label("Score: 0", lstyle);
 	    this.scoreLabel.setPosition(10, 40);
+	    this.ammoLabel = new Label("Remaining Ammunition: 0", lstyle);
+	    this.ammoLabel.setPosition(10, 60);
 	    
 	    this.stage.addActor(this.fpsLabel);
 	    this.stage.addActor(this.healthLabel);
 	    this.stage.addActor(this.scoreLabel);
-	    
+	    this.stage.addActor(this.ammoLabel);
 	    
 		// Init BOX2D
 		Box2D.init();
 		player = new Texture("Sprite-0001.png");
 		healthPickup = new Texture("HealthPickupT.png");
+		zombie = new Texture("zombie.png");
 		// set screen to game screen
 		this.setScreen(new GameScreen(this));
 	}

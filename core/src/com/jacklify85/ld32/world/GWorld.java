@@ -90,9 +90,12 @@ public class GWorld implements Disposable {
 		BodyDef bDef = new BodyDef();
 		bDef.position.set(object.getPosition());
 		bDef.allowSleep = true;
-		bDef.bullet = true;
+		bDef.bullet = false;
+		if (object instanceof UnconventionalBullet) {
+			bDef.bullet = true;
+		}
 		bDef.type = BodyType.StaticBody;
-		if (object instanceof Player) {
+		if (object instanceof Player || object instanceof UnconventionalBullet) {
 			bDef.type = BodyType.DynamicBody;
 		}
 		bDef.gravityScale = 0.0f;
