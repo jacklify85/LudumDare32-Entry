@@ -30,6 +30,6 @@ public class HealthBoostPickup extends PickupBase{
 	protected void onUse(EntityBase e) {
 		GameScreen.score += 15;
 		e.setMaxHealth(e.getMaxHealth() + 50);
-		e.setHealth(e.getHealth());
+		e.setHealth(e.getMaxHealth());
 	}
 }

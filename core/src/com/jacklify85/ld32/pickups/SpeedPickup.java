@@ -28,6 +28,7 @@ public class SpeedPickup extends PickupBase{
 
 	@Override
 	protected void onUse(EntityBase e) {
+		GameScreen.score += 10;
 		GameScreen.enableSpeedBoost = true;
 	}
 }

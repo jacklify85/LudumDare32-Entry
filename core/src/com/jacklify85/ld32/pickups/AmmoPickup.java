@@ -28,6 +28,7 @@ public class AmmoPickup extends PickupBase{
 
 	@Override
 	protected void onUse(EntityBase e) {
+		GameScreen.score += 15;
 		GameScreen.player.weapon.ammo += 100;
 	}
 
