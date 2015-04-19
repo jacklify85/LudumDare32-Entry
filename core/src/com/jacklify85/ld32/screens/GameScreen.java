@@ -152,7 +152,7 @@ public class GameScreen implements Screen{
 			return;
 		}
 		
-		if (player.getX() < -550f) {
+	/*	if (player.getX() < -550f) {
 			player.setX(-545f);
 			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX(), GameScreen.player.getY());
 			return;
@@ -174,7 +174,7 @@ public class GameScreen implements Screen{
 			player.setY(545f);
 			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX(), GameScreen.player.getY());
 			return;
-		}
+		} */
 		
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			// Pause game or unpause

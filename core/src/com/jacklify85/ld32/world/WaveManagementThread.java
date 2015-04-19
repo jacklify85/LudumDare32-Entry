@@ -28,7 +28,7 @@ public class WaveManagementThread implements Runnable{
 			}
 			wave++;				
 			GameScreen.wave += 1;
-			int randamt =  25 * rand.nextInt(3);
+			int randamt =  25 * rand.nextInt(5);
 			for (int i = 0; i < randamt; i++) {
 				float posX = GameScreen.player.getX() + (rand.nextInt(1000) * rand.nextInt(3) * rand.nextFloat());
 				float posY = GameScreen.player.getY() + (rand.nextInt(1000) * rand.nextFloat());

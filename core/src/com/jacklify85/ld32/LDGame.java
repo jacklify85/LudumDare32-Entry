@@ -49,7 +49,7 @@ public class LDGame extends Game {
 	@Override
 	public void create () {
 		Gdx.app.log("LDGAME", "INIT");
-		Gdx.graphics.setTitle("Jacklify85's LD 32 Entry");
+		Gdx.graphics.setTitle("Super ZDefeat");
 		// Log some debug information
 		Gdx.app.log("LDGAME", "Platform Version: " + Gdx.app.getVersion());
 		Gdx.app.log("LDGAME", "Native Heap: " + Gdx.app.getNativeHeap());
