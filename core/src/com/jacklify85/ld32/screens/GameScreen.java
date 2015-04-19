@@ -85,8 +85,6 @@ public class GameScreen implements Screen{
 			if (GameScreen.alive == false || GameScreen.player.getHealth() <= 0 || GameScreen.player.getMaxHealth() <= 0) {
 				// player died, show dead screen
 				this.game.playerDied();
-				RenderUtils.endGameScreen(score);
-				
 				if (!AudioUtil.isPlaying("GameOver")) {
 					AudioUtil.playMusic("GameOver", LDGame.gameOver, true);
 				}

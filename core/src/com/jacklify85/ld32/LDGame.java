@@ -34,7 +34,7 @@ public class LDGame extends Game {
 	
 	// Stage2d
 	private Stage stage = null;
-	private Label fpsLabel, healthLabel, scoreLabel, ammoLabel, posLabel, waveLabel, remainingLabel = null;
+	private Label fpsLabel, healthLabel, scoreLabel, ammoLabel, posLabel, waveLabel, remainingLabel, endLabel = null;
 
 	private boolean died;
 	
@@ -72,6 +72,8 @@ public class LDGame extends Game {
 	    this.remainingLabel = new Label("Zombies Remaining: 0", lstyle);
 	    this.remainingLabel.setPosition(10, 120);
 	    this.remainingLabel.setColor(Color.GREEN);
+	    this.endLabel = new Label("You've been eaten! You're score was: SCORE Thanks for playing! Press 'ENTER' to start a new game.", lstyle);
+	    this.endLabel.setPosition(100, 100);
 	    
 	    this.stage.addActor(this.fpsLabel);
 	    this.stage.addActor(this.healthLabel);
@@ -105,6 +107,8 @@ public class LDGame extends Game {
 		Gdx.gl.glClearColor(0, 0, 0, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
+		super.render();
+		
 		// Start rendering
 		if (!died) {
 			this.fpsLabel.setText("FPS: " + Gdx.graphics.getFramesPerSecond());
@@ -115,14 +119,22 @@ public class LDGame extends Game {
 			this.waveLabel.setText("Wave: " + GameScreen.wave);
 			this.remainingLabel.setText("Zombies Remaining: " + GameScreen.world.zombiesRemaining);
 		} else {
-			
+			this.endLabel.setText("You've been eaten! You're score was: " + GameScreen.score + " Thanks for playing! Press 'ENTER' to start a new game.");
 		}
-		stage.act();
-		super.render(); 
+		stage.act(); 
 		stage.draw();
 	}
 
 	public void playerDied() {
+		if (this.died) return;
 		this.died = true;
+		this.stage.addActor(this.endLabel);
+		this.fpsLabel.setVisible(false);
+		this.healthLabel.setVisible(false);
+		this.ammoLabel.setVisible(false);
+		this.posLabel.setVisible(false);
+		this.waveLabel.setVisible(false);
+		this.remainingLabel.setVisible(false);
+		this.scoreLabel.setVisible(false);
 	}
 }
