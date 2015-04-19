@@ -49,7 +49,7 @@ public class GameScreen implements Screen{
 		GameScreen.world.addObject(player);
 		this.game = game;
 		Random random = new Random();
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 25; i++) {
 			Zombie zombie = new Zombie(random.nextInt(500) * random.nextFloat(), random.nextInt(1000) * random.nextFloat(), 22 + i);
 		    GameScreen.world.addObject(zombie);
 		}
