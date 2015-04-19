@@ -20,7 +20,6 @@ public class Box2DContactManager implements ContactListener {
 	public void beginContact(Contact contact) {
 		IGameObject gObjectA = (IGameObject)contact.getFixtureA().getBody().getUserData();
 		IGameObject gObjectB = (IGameObject)contact.getFixtureB().getBody().getUserData();
-		
 		if (gObjectA instanceof PickupBase) {
 			if (gObjectB instanceof Player) {
 				PickupBase pickup = (PickupBase)gObjectA;
@@ -54,7 +53,7 @@ public class Box2DContactManager implements ContactListener {
 				bullet.setHealth(0);
 				GameScreen.score += 15;
 			} else if (gObjectB instanceof Zombie) {
-				contact.getFixtureA().getBody().applyForce(20f, 10f, 1f, 1f, true);
+				//contact.getFixtureA().getBody().applyForce(20f, 10f, 1f, 1f, true);
 			}
 		} else if (gObjectA instanceof UnconventionalBullet) {
 			if (gObjectB instanceof Zombie) {
@@ -74,12 +73,16 @@ public class Box2DContactManager implements ContactListener {
 
 	@Override
 	public void preSolve(Contact contact, Manifold oldManifold) {
-		
+		if ((contact.getFixtureA().getBody().getUserData() instanceof Player || contact.getFixtureA().getBody().getUserData() instanceof UnconventionalBullet) && (contact.getFixtureB().getBody().getUserData() instanceof Player || contact.getFixtureB().getBody().getUserData() instanceof UnconventionalBullet)) {
+			contact.setEnabled(false);
+		}
 	}
 
 	@Override
 	public void postSolve(Contact contact, ContactImpulse impulse) {
-		
+		if ((contact.getFixtureA().getBody().getUserData() instanceof Player || contact.getFixtureA().getBody().getUserData() instanceof UnconventionalBullet) && (contact.getFixtureB().getBody().getUserData() instanceof Player || contact.getFixtureB().getBody().getUserData() instanceof UnconventionalBullet)) {
+			contact.setEnabled(false);
+		}
 	}
 
 }

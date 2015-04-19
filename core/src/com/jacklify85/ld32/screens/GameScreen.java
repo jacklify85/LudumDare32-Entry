@@ -34,8 +34,8 @@ public class GameScreen implements Screen{
 		this.game = game;
 		Random random = new Random();
 		for (int i = 0; i < 50; i++) {
-			//Zombie zombie = new Zombie(random.nextInt(5000) * random.nextFloat(), random.nextInt(1000) * random.nextFloat(), 22 + i);
-			//GameScreen.world.addObject(zombie);
+			Zombie zombie = new Zombie(random.nextInt(5000) * random.nextFloat(), random.nextInt(1000) * random.nextFloat(), 22 + i);
+		    GameScreen.world.addObject(zombie);
 			this.box2d = new Box2DDebugRenderer();
 		}
 		
@@ -60,7 +60,7 @@ public class GameScreen implements Screen{
 		RenderUtils.beginRendering();
 		//////////////////
 		if (!this.isPaused) {
-			this.box2d.render(world.world, this.camera.combined);
+			//this.box2d.render(world.world, this.camera.combined);
 			GameScreen.world.render();
 			if (GameScreen.alive == false) {
 				// player died, show dead screen

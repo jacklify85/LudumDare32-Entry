@@ -1,11 +1,15 @@
 package com.jacklify85.ld32.world;
 
 import com.badlogic.gdx.utils.Pool.Poolable;
+import com.jacklify85.ld32.LDGame;
 import com.jacklify85.ld32.screens.GameScreen;
+import com.jacklify85.ld32.util.RenderUtils;
 
 public class UnconventionalBullet extends EntityBase implements Poolable{
 	private int direction = 0;
 	
+	private final int maxCycles = 60 * 2;
+	private int elapsedCycles = 0;
 	
 	public UnconventionalBullet() {
 		super (0f, 0f, 1f, 1f, 0);
@@ -31,31 +35,37 @@ public class UnconventionalBullet extends EntityBase implements Poolable{
 			break;
 		}
 		}
+		elapsedCycles++;
+		if (elapsedCycles >= maxCycles) {
+			this.setHealth(0);
+		}
 	}
 
 	@Override
 	public void draw() {
-		
+		RenderUtils.drawTexture(LDGame.bullet, this.getX(), this.getY());
 	}
 
 	@Override
 	public float getHeight() {
-		return 1;
+		return LDGame.bullet.getHeight();
 	}
 
 	@Override
 	public float getWidth() {
-		return 1;
+		return LDGame.bullet.getWidth();
 	}
 
 	@Override
 	protected void died() {
+		GameScreen.world.cleanupBody(this.getBody());
 		GWorld.bulletPool.free(this);
 	}
 
 	@Override
 	public void reset() {
 		this.direction = 0;
+		this.elapsedCycles = 0;
 	}
 
 	public void setDirection(int direction) {

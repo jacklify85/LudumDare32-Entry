@@ -23,7 +23,7 @@ public class LDGame extends Game {
 	public static Texture player = null;
 	public static Texture healthPickup = null;
 	public static Texture zombie = null;
-	
+	public static Texture bullet = null;
 	
 	// Stage2d
 	private Stage stage = null;
@@ -66,6 +66,7 @@ public class LDGame extends Game {
 		player = new Texture("Sprite-0001.png");
 		healthPickup = new Texture("HealthPickupT.png");
 		zombie = new Texture("zombie.png");
+		bullet = new Texture("bullet.png");
 		// set screen to game screen
 		this.setScreen(new GameScreen(this));
 	}
