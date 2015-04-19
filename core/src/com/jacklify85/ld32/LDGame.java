@@ -2,6 +2,7 @@ package com.jacklify85.ld32;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -120,6 +121,26 @@ public class LDGame extends Game {
 			this.remainingLabel.setText("Zombies Remaining: " + GameScreen.world.zombiesRemaining);
 		} else {
 			this.endLabel.setText("You've been eaten! You're score was: " + GameScreen.score + " Thanks for playing! Press 'ENTER' to start a new game.");
+		    if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+		    	// Reset game
+		    	this.died = false;
+				this.fpsLabel.setVisible(true);
+				this.healthLabel.setVisible(true);
+				this.ammoLabel.setVisible(true);
+				this.posLabel.setVisible(true);
+				this.waveLabel.setVisible(true);
+				this.remainingLabel.setVisible(true);
+				this.scoreLabel.setVisible(true);
+				this.endLabel.setVisible(false);
+				GameScreen.score = 0;
+				GameScreen.enableSpeedBoost = false;
+				GameScreen.alive = true;
+				GameScreen.wave = 1;
+				GameScreen.world.dispose();
+				GameScreen.world = null;
+				GameScreen.player = null;
+				this.setScreen(new GameScreen(this));
+		    }
 		}
 		stage.act(); 
 		stage.draw();
