@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.Pool;
 import com.jacklify85.ld32.physics.Box2DContactManager;
 import com.jacklify85.ld32.pickups.PickupBase;
+import com.jacklify85.ld32.screens.GameScreen;
 
 public class GWorld implements Disposable {
 	
@@ -91,6 +92,7 @@ public class GWorld implements Disposable {
 				pBase.draw();
 			}
 		}
+		GameScreen.go = true;
 	}
 	
 	public void doMovement(EntityBase eBase, float x, float y) {

@@ -1,5 +1,6 @@
 package com.jacklify85.ld32.screens;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
@@ -15,7 +16,9 @@ import com.jacklify85.ld32.pickups.SpeedPickup;
 import com.jacklify85.ld32.util.AudioUtil;
 import com.jacklify85.ld32.util.RenderUtils;
 import com.jacklify85.ld32.world.GWorld;
+import com.jacklify85.ld32.world.IGameObject;
 import com.jacklify85.ld32.world.Player;
+import com.jacklify85.ld32.world.WaveManagementThread;
 import com.jacklify85.ld32.world.Zombie;
 
 public class GameScreen implements Screen{
@@ -33,6 +36,9 @@ public class GameScreen implements Screen{
 	
 	public static int wave = 1;
 	
+	public LinkedList<IGameObject> objsToBeAdded = new LinkedList<IGameObject>();
+	public static boolean go = false;
+	
 	public GameScreen(LDGame game) {
 		if (AudioUtil.isPlaying("GameOver")) {
 			AudioUtil.stopPlaying("GameOver");
@@ -43,8 +49,8 @@ public class GameScreen implements Screen{
 		GameScreen.world.addObject(player);
 		this.game = game;
 		Random random = new Random();
-		for (int i = 0; i < 50; i++) {
-			Zombie zombie = new Zombie(random.nextInt(5000) * random.nextFloat(), random.nextInt(1000) * random.nextFloat(), 22 + i);
+		for (int i = 0; i < 5; i++) {
+			Zombie zombie = new Zombie(random.nextInt(500) * random.nextFloat(), random.nextInt(1000) * random.nextFloat(), 22 + i);
 		    GameScreen.world.addObject(zombie);
 		}
 		
@@ -67,6 +73,7 @@ public class GameScreen implements Screen{
 			SpeedPickup sPickup = new SpeedPickup(random.nextInt(500), random.nextInt(600));
 			GameScreen.world.addObject(sPickup);
 		}
+		new Thread(new WaveManagementThread(this)).start();
 	}
 	
 	@Override
@@ -76,6 +83,9 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void render(float delta) {
+		if (!this.objsToBeAdded.isEmpty()) {
+			world.addObject(this.objsToBeAdded.poll());
+		}
 		doInput();
 		// Set projection matrix and render
 		this.camera.position.set(GameScreen.player.getPosition(), this.camera.position.z);

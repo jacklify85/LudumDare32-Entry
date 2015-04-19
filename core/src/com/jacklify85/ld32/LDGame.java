@@ -87,6 +87,7 @@ public class LDGame extends Game {
 	    this.remainingLabel.setColor(Color.GREEN);
 	    this.endLabel = new Label("You've been eaten! You're score was: SCORE Thanks for playing! Press 'ENTER' to start a new game.", lstyle);
 	    this.endLabel.setPosition(100, 100);
+	    this.endLabel.setVisible(false);
 	    
 	    this.stage.addActor(this.fpsLabel);
 	    this.stage.addActor(this.healthLabel);
@@ -95,6 +96,7 @@ public class LDGame extends Game {
 	    this.stage.addActor(this.posLabel);
 	    this.stage.addActor(this.waveLabel);
 	    this.stage.addActor(this.remainingLabel);
+		this.stage.addActor(this.endLabel);
 	    
 		// Init BOX2D
 		Box2D.init();
@@ -159,6 +161,7 @@ public class LDGame extends Game {
 				GameScreen.world.dispose();
 				GameScreen.world = null;
 				GameScreen.player = null;
+				GameScreen.go = false;
 				this.setScreen(new GameScreen(this));
 		    }
 		}
@@ -169,7 +172,7 @@ public class LDGame extends Game {
 	public void playerDied() {
 		if (this.died) return;
 		this.died = true;
-		this.stage.addActor(this.endLabel);
+		this.endLabel.setVisible(true);
 		this.fpsLabel.setVisible(false);
 		this.healthLabel.setVisible(false);
 		this.ammoLabel.setVisible(false);

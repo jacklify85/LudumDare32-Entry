@@ -70,6 +70,7 @@ public class Zombie extends EntityBase{
 	protected void died() {
 		GameScreen.score += 30;
 		AudioUtil.playEffect(LDGame.zombieDie);
+		//this.setBody(null);
 	}
 
 	public void ignite() {
