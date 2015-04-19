@@ -104,8 +104,15 @@ public class GWorld implements Disposable {
 		if (object instanceof UnconventionalBullet) {
 			bDef.bullet = true;
 		}
-		bDef.type = BodyType.StaticBody;
-		if (object instanceof Player || object instanceof UnconventionalBullet) {
+		
+		bDef.type = BodyType.DynamicBody;
+		if (object instanceof Player) {
+			bDef.type = BodyType.StaticBody;
+		}
+		if (object instanceof Zombie) {
+			bDef.type = BodyType.DynamicBody;
+		}
+		if (object instanceof UnconventionalBullet) {
 			bDef.type = BodyType.DynamicBody;
 		}
 		bDef.gravityScale = 0.0f;
