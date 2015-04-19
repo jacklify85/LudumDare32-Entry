@@ -81,6 +81,7 @@ public class LDGame extends Game {
 		bullet = new Texture("bullet.png");
 		ammoPickup = new Texture("AmmoPickup.png");
 		maxhealthPickup = new Texture("MaxHealthPickup.png");
+		speedPickup = new Texture("SpeedBoost.png");
 		
 		// set screen to game screen
 		this.setScreen(new GameScreen(this));
