@@ -3,6 +3,7 @@ package com.jacklify85.ld32;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -32,6 +33,8 @@ public class LDGame extends Game {
 	
 	public static Music gameOver = null;
 	
+	private int highScore = 0;
+	private Preferences preferences;
 	
 	// Stage2d
 	private Stage stage = null;
@@ -47,6 +50,12 @@ public class LDGame extends Game {
 		Gdx.app.log("LDGAME", "Platform Version: " + Gdx.app.getVersion());
 		Gdx.app.log("LDGAME", "Native Heap: " + Gdx.app.getNativeHeap());
 		Gdx.app.log("LDGAME", "Java Heap: " + Gdx.app.getJavaHeap());
+		
+		this.preferences = Gdx.app.getPreferences("jacklify85LD32");
+		
+		if (this.preferences.contains("highscore")) {
+			this.highScore = this.preferences.getInteger("highscore", 0);
+		}
 		
 		// create stage
 		this.stage = new Stage();
@@ -120,8 +129,13 @@ public class LDGame extends Game {
 			this.waveLabel.setText("Wave: " + GameScreen.wave);
 			this.remainingLabel.setText("Zombies Remaining: " + GameScreen.world.zombiesRemaining);
 		} else {
-			this.endLabel.setText("You've been eaten! You're score was: " + GameScreen.score + " Thanks for playing! Press 'ENTER' to start a new game.");
-		    if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
+			this.endLabel.setText("You've been eaten! Your score was: " + GameScreen.score + " Your high score is: " + this.highScore + " Thanks for playing! Press 'ENTER' to start a new game.");
+			if (GameScreen.score > this.highScore) {
+				this.preferences.putInteger("highscore", GameScreen.score);
+				this.highScore = GameScreen.score;
+				this.preferences.flush();
+			}
+			if (Gdx.input.isKeyJustPressed(Keys.ENTER)) {
 		    	// Reset game
 		    	this.died = false;
 				this.fpsLabel.setVisible(true);
