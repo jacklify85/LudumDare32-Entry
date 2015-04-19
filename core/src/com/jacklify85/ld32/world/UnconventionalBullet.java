@@ -44,36 +44,6 @@ public class UnconventionalBullet extends EntityBase implements Poolable{
 			}
 		  }
 		} else {
-			/* // Player is in front of object
-			if ((this.getPosition().x - targetX) > 0) {
-				// Player is on top of object
-				if ((this.getPosition().y - targetY) > 0) {
-					GameScreen.world.doMovement(this, this.getX() - 1.0f, this.getY() - 1.0f);
-				} else if ((this.getPosition().y - targetY) < 0) { // Player is under object
-					GameScreen.world.doMovement(this, this.getX() - 1.0f, this.getY() + 1.0f);
-				} else { // Player is level with object
-					GameScreen.world.doMovement(this, this.getX() - 1.0f, this.getY());
-				}
-			} else if ((this.getPosition().x - targetX) < 0) { // Player is behind object
-				// Player is on top of object
-				if ((this.getPosition().y - targetY) > 0) {
-					GameScreen.world.doMovement(this, this.getX() + 1.0f, this.getY() - 1.0f);
-				} else if ((this.getPosition().y - targetY) < 0) { // Player is under object
-					GameScreen.world.doMovement(this, this.getX() + 1.0f, this.getY() + 1.0f);
-				} else { // Player is level with object
-					GameScreen.world.doMovement(this, this.getX() + 1.0f, this.getY());
-				}
-			} else { //Player is next to object
-				// Player is on top of object
-				if ((this.getPosition().y - targetY) > 0) {
-					GameScreen.world.doMovement(this, this.getX(), this.getY() - 1.0f);
-				} else if ((this.getPosition().y - targetY) < 0) { // Player is under object
-					GameScreen.world.doMovement(this, this.getX(), this.getY() + 1.0f);
-				} else { // Player is level with object
-					return;
-				}
-			} */
-			
 			if (this.pFinder.getMovementX() > 0) {
 				if (this.pFinder.getMovementY() > 0) {
 					GameScreen.world.doMovement(this, this.getX() + 0.6f, this.getY() + 0.6f);
