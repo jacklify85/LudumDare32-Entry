@@ -52,6 +52,7 @@ public class Zombie extends EntityBase{
 		RenderUtils.drawTexture(LDGame.zombie, this.getX(), this.getY());
 		
 		if (this.ignited) {
+			RenderUtils.drawTexture(LDGame.fire, this.getX() + 3, this.getY() + 25);
 		}
 	}
 
