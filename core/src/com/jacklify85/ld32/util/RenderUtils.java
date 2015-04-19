@@ -41,7 +41,7 @@ public class RenderUtils {
 	
 	public static void endGameScreen(int score) {
 		bDefaultFont.setColor(Color.ORANGE);
-		bDefaultFont.draw(sBatch, "You DIED! Your score was: " + score + "Thanks for playing!", 100, 100);
+		bDefaultFont.draw(sBatch, "You've been eaten! Your score was: " + score + " Thanks for playing!", 100, 100);
 		bDefaultFont.draw(sBatch, "Press 'ENTER' to start a NEW GAME!", 100, 80);
 		bDefaultFont.setColor(Color.WHITE);
 	}

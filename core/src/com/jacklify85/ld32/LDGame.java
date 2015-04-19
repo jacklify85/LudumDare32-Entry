@@ -86,7 +86,7 @@ public class LDGame extends Game {
 		player = new Texture("Sprite-0001.png");
 		healthPickup = new Texture("HealthPickupT.png");
 		zombie = new Texture("zombie.png");
-		bullet = new Texture("bullet.png");
+		bullet = new Texture("bullet2.png");
 		ammoPickup = new Texture("AmmoPickup.png");
 		maxhealthPickup = new Texture("MaxHealthPickup.png");
 		speedPickup = new Texture("SpeedBoost.png");
