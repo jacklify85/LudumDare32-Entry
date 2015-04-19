@@ -24,6 +24,7 @@ public class LDGame extends Game {
 	public static Texture healthPickup = null;
 	public static Texture zombie = null;
 	public static Texture bullet = null;
+	public static Texture ammoPickup = null;
 	
 	// Stage2d
 	private Stage stage = null;
@@ -53,7 +54,7 @@ public class LDGame extends Game {
 	    this.healthLabel.setPosition(10, 20);
 	    this.scoreLabel = new Label("Score: 0", lstyle);
 	    this.scoreLabel.setPosition(10, 40);
-	    this.ammoLabel = new Label("Remaining Ammunition: 0", lstyle);
+	    this.ammoLabel = new Label("Remaining Ammunition: 0 Bullets", lstyle);
 	    this.ammoLabel.setPosition(10, 60);
 	    
 	    this.stage.addActor(this.fpsLabel);
@@ -67,6 +68,7 @@ public class LDGame extends Game {
 		healthPickup = new Texture("HealthPickupT.png");
 		zombie = new Texture("zombie.png");
 		bullet = new Texture("bullet.png");
+		ammoPickup = new Texture("AmmoPickup.png");
 		// set screen to game screen
 		this.setScreen(new GameScreen(this));
 	}
@@ -81,6 +83,7 @@ public class LDGame extends Game {
 		this.fpsLabel.setText("FPS: " + Gdx.graphics.getFramesPerSecond());
 		this.healthLabel.setText("Health: " + GameScreen.player.getHealth() + " / " + GameScreen.player.getMaxHealth());
 		this.scoreLabel.setText("Score: " + GameScreen.score);
+		this.ammoLabel.setText("Remaining Ammunition: " + GameScreen.player.weapon.ammo + " bullets");
 		stage.act();
 		super.render();
 		stage.draw();

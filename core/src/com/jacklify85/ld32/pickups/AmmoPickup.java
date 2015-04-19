@@ -1,36 +1,34 @@
 package com.jacklify85.ld32.pickups;
 
+import com.jacklify85.ld32.LDGame;
+import com.jacklify85.ld32.screens.GameScreen;
+import com.jacklify85.ld32.util.RenderUtils;
 import com.jacklify85.ld32.world.EntityBase;
 
 public class AmmoPickup extends PickupBase{
 
 	public AmmoPickup(float x, float y) {
 		super(x, y);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void draw() {
-		// TODO Auto-generated method stub
-		
+		RenderUtils.drawTexture(LDGame.ammoPickup, this.getPosition().x, this.getPosition().y);
 	}
 
 	@Override
 	public float getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return LDGame.ammoPickup.getHeight();
 	}
 
 	@Override
 	public float getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return LDGame.ammoPickup.getWidth();
 	}
 
 	@Override
 	protected void onUse(EntityBase e) {
-		// TODO Auto-generated method stub
-		
+		GameScreen.player.weapon.ammo += 100;
 	}
 
 }

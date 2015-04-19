@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.jacklify85.ld32.LDGame;
+import com.jacklify85.ld32.pickups.AmmoPickup;
 import com.jacklify85.ld32.pickups.HealthPickup;
 import com.jacklify85.ld32.util.RenderUtils;
 import com.jacklify85.ld32.world.GWorld;
@@ -42,6 +43,11 @@ public class GameScreen implements Screen{
 		for (int i = 0; i < 10; i++) {
 			HealthPickup hPickup = new HealthPickup(random.nextInt(500), random.nextInt(300));
 			GameScreen.world.addObject(hPickup);
+		}
+		
+		for (int i = 0; i < 10; i++) {
+			AmmoPickup aPickup = new AmmoPickup(random.nextInt(500), random.nextInt(300));
+			GameScreen.world.addObject(aPickup);
 		}
 	}
 	

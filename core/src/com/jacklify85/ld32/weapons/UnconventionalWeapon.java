@@ -7,6 +7,8 @@ import com.jacklify85.ld32.world.UnconventionalBullet;
 
 public class UnconventionalWeapon implements IWeapon{
 
+	public int ammo = 100;
+	
 	@Override
 	public void draw() {
 		// TODO Auto-generated method stub
@@ -21,6 +23,10 @@ public class UnconventionalWeapon implements IWeapon{
 	@Override
 	public void use() {
 		// Get bullet from pool
+		if (ammo <= 0) {
+			return;
+		}
+		ammo--;
 		UnconventionalBullet uBullet = GWorld.bulletPool.obtain();
 	    uBullet.setDirection(GameScreen.player.direction);
 	    uBullet.setPosition(GameScreen.player.getX(), GameScreen.player.getY());
