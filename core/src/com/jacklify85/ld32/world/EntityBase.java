@@ -8,7 +8,7 @@ public abstract class EntityBase implements IGameObject{
 	private Vector2 position;
 	protected float health, maxHealth;
 	private int id;
-	private boolean isDead = false;
+	protected boolean isDead = false;
 	private Body body = null;
 	
 	public EntityBase(float x, float y, float health, float maxHealth, int id) {

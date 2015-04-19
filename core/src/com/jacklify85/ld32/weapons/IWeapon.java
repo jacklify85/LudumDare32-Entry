@@ -9,5 +9,7 @@ public interface IWeapon {
 	public void onHit(EntityBase target);
 	
 	public void use();
+
+	void use(int xPos, int yPos);
 	
 }

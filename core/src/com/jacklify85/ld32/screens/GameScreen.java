@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -26,6 +27,8 @@ public class GameScreen implements Screen{
 	public static volatile boolean alive = true;
 	private LDGame game;
 	private Box2DDebugRenderer box2d;
+	
+	private int wave = 1;
 	
 	public GameScreen(LDGame game) {
 		this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -60,13 +63,13 @@ public class GameScreen implements Screen{
 	public void render(float delta) {
 		doInput();
 		// Set projection matrix and render
-		this.camera.position.set(GameScreen.player.getPosition(), this.camera.position.z);
-		this.camera.update();
+	//	this.camera.position.set(GameScreen.player.getPosition(), this.camera.position.z);
+	//	this.camera.update();
 		RenderUtils.setMatrix(this.camera.combined);
 		RenderUtils.beginRendering();
 		//////////////////
 		if (!this.isPaused) {
-			//this.box2d.render(world.world, this.camera.combined);
+			this.box2d.render(world.world, this.camera.combined);
 			GameScreen.world.render();
 			if (GameScreen.alive == false) {
 				// player died, show dead screen
@@ -110,6 +113,13 @@ public class GameScreen implements Screen{
 			this.isPaused = !this.isPaused;
 		}
 		
+		if (Gdx.input.isTouched()) {
+			int xPos = Gdx.input.getX();
+			int yPos = Gdx.input.getY();
+			
+			
+			player.weapon.use(xPos, yPos);
+		}
 		if (Gdx.input.isKeyPressed(Keys.SPACE)) {
 			player.weapon.use();            
 		}

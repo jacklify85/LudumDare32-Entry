@@ -61,6 +61,8 @@ public class Box2DContactManager implements ContactListener {
 				zombie.damage(10);
 				zombie.ignite();
 				GameScreen.score += 15;
+				UnconventionalBullet bullet = (UnconventionalBullet)gObjectA;
+				bullet.setHealth(0);
 			}
 		}
 		
