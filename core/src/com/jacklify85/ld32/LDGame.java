@@ -29,7 +29,7 @@ public class LDGame extends Game {
 	
 	// Stage2d
 	private Stage stage = null;
-	private Label fpsLabel, healthLabel, scoreLabel, ammoLabel, posLabel = null;
+	private Label fpsLabel, healthLabel, scoreLabel, ammoLabel, posLabel, waveLabel, remainingLabel = null;
 	
 	@Override
 	public void create () {
@@ -59,12 +59,18 @@ public class LDGame extends Game {
 	    this.ammoLabel.setPosition(10, 60);
 	    this.posLabel = new Label("Position: (X: 0; Y:0", lstyle);
 	    this.posLabel.setPosition(10,  80);
+	    this.waveLabel = new Label("Wave: 1", lstyle);
+	    this.waveLabel.setPosition(10, 100);
+	    this.remainingLabel = new Label("Zombies Remaining: 0", lstyle);
+	    this.remainingLabel.setPosition(10, 120);
 	    
 	    this.stage.addActor(this.fpsLabel);
 	    this.stage.addActor(this.healthLabel);
 	    this.stage.addActor(this.scoreLabel);
 	    this.stage.addActor(this.ammoLabel);
 	    this.stage.addActor(this.posLabel);
+	    this.stage.addActor(this.waveLabel);
+	    this.stage.addActor(this.remainingLabel);
 	    
 		// Init BOX2D
 		Box2D.init();
@@ -91,6 +97,8 @@ public class LDGame extends Game {
 		this.scoreLabel.setText("Score: " + GameScreen.score);
 		this.ammoLabel.setText("Remaining Ammunition: " + GameScreen.player.weapon.ammo + " bullets");
 		this.posLabel.setText("Position: (X: " + GameScreen.player.getX() + "; Y: " + GameScreen.player.getY() + ")");
+		this.waveLabel.setText("Wave: " + GameScreen.wave);
+		this.remainingLabel.setText("Zombies Remaining: " + GameScreen.world.zombiesRemaining);
 		stage.act();
 		super.render();
 		stage.draw();

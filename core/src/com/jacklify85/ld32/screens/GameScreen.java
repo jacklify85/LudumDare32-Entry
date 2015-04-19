@@ -29,7 +29,7 @@ public class GameScreen implements Screen{
 	private LDGame game;
 	private Box2DDebugRenderer box2d;
 	
-	private int wave = 1;
+	public static int wave = 1;
 	
 	public GameScreen(LDGame game) {
 		this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

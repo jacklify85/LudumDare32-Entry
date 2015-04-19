@@ -23,6 +23,7 @@ public class GWorld implements Disposable {
 	
 	public World world;
 	private Array<Body> bodies = new Array<Body>();
+	public int zombiesRemaining = 0;
 	
 	public static Pool<UnconventionalBullet> bulletPool = new Pool<UnconventionalBullet>() {
 		@Override
@@ -43,6 +44,7 @@ public class GWorld implements Disposable {
 	}
 	
 	public void render() {
+		this.zombiesRemaining = 0;
 		this.bodies.clear();
 		this.world.step(STEP_TIME, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
 		this.world.getBodies(bodies);
@@ -58,6 +60,10 @@ public class GWorld implements Disposable {
 				EntityBase eBase = (EntityBase)gObject;
 				
 				// simulate entity
+				if (eBase instanceof Zombie) {
+					this.zombiesRemaining++;
+				}
+				
 				eBase.update();
 				eBase.setPosition(body.getPosition().x, body.getPosition().y);
 				body.setActive(true);
