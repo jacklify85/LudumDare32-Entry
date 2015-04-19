@@ -141,6 +141,30 @@ public class GameScreen implements Screen{
 			return;
 		}
 		
+		if (player.getX() < -550f) {
+			player.setX(-545f);
+			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX(), GameScreen.player.getY());
+			return;
+		}
+		
+		if (player.getX() > 550f) {
+			player.setX(545f);
+			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX(), GameScreen.player.getY());
+			return;
+		}
+		
+		if (player.getY() < -545f) {
+			player.setY(-545f);
+			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX(), GameScreen.player.getY());
+			return;
+		}
+		
+		if (player.getY() > 550f) {
+			player.setY(545f);
+			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX(), GameScreen.player.getY());
+			return;
+		}
+		
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			// Pause game or unpause
 			this.isPaused = !this.isPaused;
