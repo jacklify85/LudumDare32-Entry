@@ -4,12 +4,9 @@ import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.jacklify85.ld32.LDGame;
 import com.jacklify85.ld32.pickups.AmmoPickup;
 import com.jacklify85.ld32.pickups.HealthPickup;
@@ -27,7 +24,6 @@ public class GameScreen implements Screen{
 	public static int score = 0;
 	public static volatile boolean alive = true;
 	private LDGame game;
-	private Box2DDebugRenderer box2d;
 	public static boolean enableSpeedBoost = false;
 	private int boostCount = 0;
 	private int maxCycles = 60 * 5;
@@ -44,7 +40,6 @@ public class GameScreen implements Screen{
 		for (int i = 0; i < 50; i++) {
 			Zombie zombie = new Zombie(random.nextInt(5000) * random.nextFloat(), random.nextInt(1000) * random.nextFloat(), 22 + i);
 		    GameScreen.world.addObject(zombie);
-			this.box2d = new Box2DDebugRenderer();
 		}
 		
 		for (int i = 0; i < 10; i++) {
@@ -74,8 +69,9 @@ public class GameScreen implements Screen{
 		//////////////////
 		if (!this.isPaused) {
 			//this.box2d.render(world.world, this.camera.combined);
-			if (GameScreen.alive == false) {
+			if (GameScreen.alive == false || GameScreen.player.getHealth() <= 0 || GameScreen.player.getMaxHealth() <= 0) {
 				// player died, show dead screen
+				this.game.playerDied();
 				RenderUtils.endGameScreen(score);
 			} else {
 				GameScreen.world.render();
@@ -155,7 +151,7 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void pause() {
-		
+		this.isPaused = true;
 	}
 
 	@Override
