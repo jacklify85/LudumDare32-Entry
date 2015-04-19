@@ -9,7 +9,9 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.jacklify85.ld32.LDGame;
 import com.jacklify85.ld32.pickups.AmmoPickup;
+import com.jacklify85.ld32.pickups.HealthBoostPickup;
 import com.jacklify85.ld32.pickups.HealthPickup;
+import com.jacklify85.ld32.pickups.SpeedPickup;
 import com.jacklify85.ld32.util.RenderUtils;
 import com.jacklify85.ld32.world.GWorld;
 import com.jacklify85.ld32.world.Player;
@@ -50,6 +52,16 @@ public class GameScreen implements Screen{
 		for (int i = 0; i < 10; i++) {
 			AmmoPickup aPickup = new AmmoPickup(random.nextInt(500), random.nextInt(300));
 			GameScreen.world.addObject(aPickup);
+		}
+		
+		for (int i = 0; i < 10; i++) {
+			HealthBoostPickup hbPickup = new HealthBoostPickup(random.nextInt(500), random.nextInt(400));
+			GameScreen.world.addObject(hbPickup);
+		}
+		
+		for (int i = 0; i < 10; i++) {
+			SpeedPickup sPickup = new SpeedPickup(random.nextInt(500), random.nextInt(600));
+			GameScreen.world.addObject(sPickup);
 		}
 	}
 	
@@ -98,7 +110,6 @@ public class GameScreen implements Screen{
 				this.boostCount = 0;
 			}
 			speedRate = 3.5f;
-			
 		}
 		// 0 = UP, 1 = DOWN, -1 = LEFT, -2 = RIGHT
 		if (Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.UP)) {
