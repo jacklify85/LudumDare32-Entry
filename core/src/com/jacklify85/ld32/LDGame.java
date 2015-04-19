@@ -2,6 +2,7 @@ package com.jacklify85.ld32;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
@@ -28,6 +29,7 @@ public class LDGame extends Game {
 	public static Texture maxhealthPickup = null;
 	public static Texture speedPickup = null;
 	
+	public static Sound hitSound = null;
 	
 	// Stage2d
 	private Stage stage = null;
@@ -87,6 +89,7 @@ public class LDGame extends Game {
 		maxhealthPickup = new Texture("MaxHealthPickup.png");
 		speedPickup = new Texture("SpeedBoost.png");
 		
+		hitSound = Gdx.audio.newSound(Gdx.files.internal("EntityHit.wav"));
 		// set screen to game screen
 		this.setScreen(new GameScreen(this));
 	}

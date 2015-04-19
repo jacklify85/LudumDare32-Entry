@@ -4,9 +4,11 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.jacklify85.ld32.LDGame;
 import com.jacklify85.ld32.pickups.HealthPickup;
 import com.jacklify85.ld32.pickups.PickupBase;
 import com.jacklify85.ld32.screens.GameScreen;
+import com.jacklify85.ld32.util.AudioUtil;
 import com.jacklify85.ld32.world.IGameObject;
 import com.jacklify85.ld32.world.Player;
 import com.jacklify85.ld32.world.UnconventionalBullet;
@@ -52,6 +54,7 @@ public class Box2DContactManager implements ContactListener {
 				UnconventionalBullet bullet = (UnconventionalBullet)gObjectB;
 				bullet.setHealth(0);
 				GameScreen.score += 15;
+				AudioUtil.playEffect(LDGame.hitSound);
 			} else if (gObjectB instanceof Zombie) {
 				//contact.getFixtureA().getBody().applyForce(20f, 10f, 1f, 1f, true);
 			}
@@ -63,6 +66,7 @@ public class Box2DContactManager implements ContactListener {
 				GameScreen.score += 15;
 				UnconventionalBullet bullet = (UnconventionalBullet)gObjectA;
 				bullet.setHealth(0);
+				AudioUtil.playEffect(LDGame.hitSound);
 			}
 		}
 		
