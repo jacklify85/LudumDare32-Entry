@@ -51,12 +51,15 @@ public class LDGame extends Game {
 		lstyle.fontColor = Color.WHITE;
 		
 	    this.fpsLabel = new Label("FPS: " + Gdx.graphics.getFramesPerSecond(), lstyle);
+	    this.fpsLabel.setColor(Color.TEAL);
 	    this.fpsLabel.setPosition(10, 700);
 	    this.healthLabel = new Label("Health: 0 / 0", lstyle);
+	    this.healthLabel.setColor(Color.RED);
 	    this.healthLabel.setPosition(10, 20);
 	    this.scoreLabel = new Label("Score: 0", lstyle);
 	    this.scoreLabel.setPosition(10, 40);
 	    this.ammoLabel = new Label("Remaining Ammunition: 0 Bullets", lstyle);
+	    this.ammoLabel.setColor(Color.ORANGE);
 	    this.ammoLabel.setPosition(10, 60);
 	    this.posLabel = new Label("Position: (X: 0; Y:0", lstyle);
 	    this.posLabel.setPosition(10,  80);
@@ -64,6 +67,7 @@ public class LDGame extends Game {
 	    this.waveLabel.setPosition(10, 100);
 	    this.remainingLabel = new Label("Zombies Remaining: 0", lstyle);
 	    this.remainingLabel.setPosition(10, 120);
+	    this.remainingLabel.setColor(Color.GREEN);
 	    
 	    this.stage.addActor(this.fpsLabel);
 	    this.stage.addActor(this.healthLabel);
