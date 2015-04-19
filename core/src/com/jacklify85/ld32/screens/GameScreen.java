@@ -34,6 +34,9 @@ public class GameScreen implements Screen{
 	public static int wave = 1;
 	
 	public GameScreen(LDGame game) {
+		if (AudioUtil.isPlaying("GameOver")) {
+			AudioUtil.stopPlaying("GameOver");
+		}
 		this.camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		GameScreen.world = new GWorld();
 		GameScreen.player = new Player(159, 122, 21);

@@ -30,6 +30,7 @@ public class LDGame extends Game {
 	
 	public static Sound hitSound = null;
 	public static Sound powerupSound = null;
+	public static Sound playerHurt = null;
 	
 	public static Music gameOver = null;
 	
@@ -105,6 +106,7 @@ public class LDGame extends Game {
 		
 		hitSound = Gdx.audio.newSound(Gdx.files.internal("EntityHit.wav"));
 		powerupSound = Gdx.audio.newSound(Gdx.files.internal("Powerup.wav"));
+		playerHurt = Gdx.audio.newSound(Gdx.files.internal("BWU.wav"));
 		
 		gameOver = Gdx.audio.newMusic(Gdx.files.internal("bu-shields-of-puppies.ogg"));
 		// set screen to game screen
