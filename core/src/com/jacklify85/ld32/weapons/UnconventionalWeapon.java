@@ -1,6 +1,9 @@
 package com.jacklify85.ld32.weapons;
 
-import com.sun.xml.internal.stream.Entity;
+import com.jacklify85.ld32.screens.GameScreen;
+import com.jacklify85.ld32.world.EntityBase;
+import com.jacklify85.ld32.world.GWorld;
+import com.jacklify85.ld32.world.UnconventionalBullet;
 
 public class UnconventionalWeapon implements IWeapon{
 
@@ -11,15 +14,16 @@ public class UnconventionalWeapon implements IWeapon{
 	}
 
 	@Override
-	public void onHit(Entity target) {
-		// TODO Auto-generated method stub
-		
+	public void onHit(EntityBase target) {
+		target.damage(25f);
 	}
 
 	@Override
 	public void use() {
-		// TODO Auto-generated method stub
-		
+		// Get bullet from pool
+		UnconventionalBullet uBullet = GWorld.bulletPool.obtain();
+	    uBullet.setDirection(GameScreen.player.direction);
+	    uBullet.setPosition(GameScreen.player.getX(), GameScreen.player.getY());
+		GameScreen.world.addObject(uBullet);
 	}
-
 }

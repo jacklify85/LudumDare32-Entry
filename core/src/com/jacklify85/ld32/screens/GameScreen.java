@@ -34,8 +34,8 @@ public class GameScreen implements Screen{
 		this.game = game;
 		Random random = new Random();
 		for (int i = 0; i < 50; i++) {
-			Zombie zombie = new Zombie(random.nextInt(5000) * random.nextFloat(), random.nextInt(1000) * random.nextFloat(), 22 + i);
-			GameScreen.world.addObject(zombie);
+			//Zombie zombie = new Zombie(random.nextInt(5000) * random.nextFloat(), random.nextInt(1000) * random.nextFloat(), 22 + i);
+			//GameScreen.world.addObject(zombie);
 			this.box2d = new Box2DDebugRenderer();
 		}
 		
@@ -60,7 +60,7 @@ public class GameScreen implements Screen{
 		RenderUtils.beginRendering();
 		//////////////////
 		if (!this.isPaused) {
-			//this.box2d.render(world.world, this.camera.combined);
+			this.box2d.render(world.world, this.camera.combined);
 			GameScreen.world.render();
 			if (GameScreen.alive == false) {
 				// player died, show dead screen
@@ -78,25 +78,34 @@ public class GameScreen implements Screen{
 		if (player == null) {
 			return;
 		}
+		// 0 = UP, 1 = DOWN, -1 = LEFT, -2 = RIGHT
 		if (Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.UP)) {
+			player.direction = 0;
 			GameScreen.world.doMovement(player, player.getX(), player.getY() + 2.5f);
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.A) || Gdx.input.isKeyPressed(Keys.LEFT)) {
+			player.direction = -1;
 			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX() - 2.5f, GameScreen.player.getY());
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.D) || Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			player.direction = -2;
 			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX() + 2.5f, GameScreen.player.getY());
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.S) || Gdx.input.isKeyPressed(Keys.DOWN)) {
+			player.direction = 1;
 			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX(), GameScreen.player.getY() - 2.5f);
 		}
 		
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			// Pause game or unpause
 			this.isPaused = !this.isPaused;
+		}
+		
+		if (Gdx.input.isKeyPressed(Keys.SPACE)) {
+			player.weapon.use();            
 		}
 	}
 

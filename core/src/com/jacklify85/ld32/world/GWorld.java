@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.Pool;
 import com.jacklify85.ld32.physics.Box2DContactManager;
 import com.jacklify85.ld32.pickups.PickupBase;
 
@@ -22,6 +23,14 @@ public class GWorld implements Disposable {
 	
 	public World world;
 	private Array<Body> bodies = new Array<Body>();
+	
+	public static Pool<UnconventionalBullet> bulletPool = new Pool<UnconventionalBullet>() {
+		@Override
+		protected UnconventionalBullet newObject() {
+			return new UnconventionalBullet();
+		}
+		
+	};
 	
 	// BOX2D LIGHTS LOGIC
 	//private RayHandler rHandler;
@@ -59,6 +68,7 @@ public class GWorld implements Disposable {
 						eBase.die();
 					} else {
 						// TODO: IMPLEMENT CLEANUP LOGIC
+						if (eBase instanceof UnconventionalBullet)continue;
 						this.cleanupBody(body);
 					}
 				}

@@ -1,12 +1,12 @@
 package com.jacklify85.ld32.weapons;
 
-import com.sun.xml.internal.stream.Entity;
+import com.jacklify85.ld32.world.EntityBase;
 
 public interface IWeapon {
 
 	public void draw();
 	
-	public void onHit(Entity target);
+	public void onHit(EntityBase target);
 	
 	public void use();
 	
