@@ -26,6 +26,8 @@ public class LDGame extends Game {
 	public static Texture bullet = null;
 	public static Texture ammoPickup = null;
 	public static Texture maxhealthPickup = null;
+	public static Texture speedPickup = null;
+	
 	
 	// Stage2d
 	private Stage stage = null;
@@ -43,7 +45,6 @@ public class LDGame extends Game {
 		
 		// create stage
 		this.stage = new Stage();
-		//stage.setViewport(new ScreenViewport());
 		
 		LabelStyle lstyle = new LabelStyle();
 		lstyle.font = RenderUtils.getFont();

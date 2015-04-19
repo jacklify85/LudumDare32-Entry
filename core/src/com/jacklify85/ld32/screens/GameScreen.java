@@ -28,6 +28,9 @@ public class GameScreen implements Screen{
 	public static volatile boolean alive = true;
 	private LDGame game;
 	private Box2DDebugRenderer box2d;
+	public static boolean enableSpeedBoost = false;
+	private int boostCount = 0;
+	private int maxCycles = 60 * 5;
 	
 	public static int wave = 1;
 	
@@ -88,25 +91,41 @@ public class GameScreen implements Screen{
 		if (player == null) {
 			return;
 		}
+		float speedRate = 2.5f;
+		
+		if (enableSpeedBoost) {
+			this.boostCount++;
+			
+			if (this.boostCount > this.maxCycles) {
+				enableSpeedBoost = false;
+				this.boostCount = 0;
+			}
+			speedRate = 3.5f;
+			
+		}
 		// 0 = UP, 1 = DOWN, -1 = LEFT, -2 = RIGHT
 		if (Gdx.input.isKeyPressed(Keys.W) || Gdx.input.isKeyPressed(Keys.UP)) {
 			player.direction = 0;
-			GameScreen.world.doMovement(player, player.getX(), player.getY() + 2.5f);
+			GameScreen.world.doMovement(player, player.getX(), player.getY() + speedRate);
+			return;
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.A) || Gdx.input.isKeyPressed(Keys.LEFT)) {
 			player.direction = -1;
-			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX() - 2.5f, GameScreen.player.getY());
+			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX() - speedRate, GameScreen.player.getY());
+			return;
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.D) || Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			player.direction = -2;
-			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX() + 2.5f, GameScreen.player.getY());
+			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX() + speedRate, GameScreen.player.getY());
+			return;
 		}
 		
 		if (Gdx.input.isKeyPressed(Keys.S) || Gdx.input.isKeyPressed(Keys.DOWN)) {
 			player.direction = 1;
-			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX(), GameScreen.player.getY() - 2.5f);
+			GameScreen.world.doMovement(GameScreen.player, GameScreen.player.getX(), GameScreen.player.getY() - speedRate);
+			return;
 		}
 		
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
