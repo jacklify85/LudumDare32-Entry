@@ -13,6 +13,7 @@ public class AudioUtil {
 	public static void playMusic(String name, Music music, boolean loop) {
 		musicPlaying.put(name, music);
 		music.setLooping(loop);
+		music.play();
 	}
 	
 	public static boolean isPlaying(String name) {

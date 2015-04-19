@@ -12,6 +12,7 @@ import com.jacklify85.ld32.pickups.AmmoPickup;
 import com.jacklify85.ld32.pickups.HealthBoostPickup;
 import com.jacklify85.ld32.pickups.HealthPickup;
 import com.jacklify85.ld32.pickups.SpeedPickup;
+import com.jacklify85.ld32.util.AudioUtil;
 import com.jacklify85.ld32.util.RenderUtils;
 import com.jacklify85.ld32.world.GWorld;
 import com.jacklify85.ld32.world.Player;
@@ -85,6 +86,10 @@ public class GameScreen implements Screen{
 				// player died, show dead screen
 				this.game.playerDied();
 				RenderUtils.endGameScreen(score);
+				
+				if (!AudioUtil.isPlaying("GameOver")) {
+					AudioUtil.playMusic("GameOver", LDGame.gameOver, true);
+				}
 			} else {
 				GameScreen.world.render();
 			}
