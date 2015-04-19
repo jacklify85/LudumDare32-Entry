@@ -30,6 +30,7 @@ public class LDGame extends Game {
 	public static Texture speedPickup = null;
 	
 	public static Sound hitSound = null;
+	public static Sound powerupSound = null;
 	
 	// Stage2d
 	private Stage stage = null;
@@ -90,6 +91,8 @@ public class LDGame extends Game {
 		speedPickup = new Texture("SpeedBoost.png");
 		
 		hitSound = Gdx.audio.newSound(Gdx.files.internal("EntityHit.wav"));
+		powerupSound = Gdx.audio.newSound(Gdx.files.internal("Powerup.wav"));
+		
 		// set screen to game screen
 		this.setScreen(new GameScreen(this));
 	}

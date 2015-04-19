@@ -27,6 +27,7 @@ public class Box2DContactManager implements ContactListener {
 				PickupBase pickup = (PickupBase)gObjectA;
 				Player player = (Player)gObjectB;
 				pickup.use(player);
+				AudioUtil.playEffect(LDGame.powerupSound);;
 			}
 		} else if (gObjectA instanceof Player) {
 			if (gObjectB instanceof Zombie) {
@@ -39,6 +40,7 @@ public class Box2DContactManager implements ContactListener {
 				if (player.getHealth() == player.getMaxHealth() && gObjectB instanceof HealthPickup) {
 					return;
 				}
+				AudioUtil.playEffect(LDGame.powerupSound);;
 				PickupBase pickup = (PickupBase)gObjectB;
 				pickup.use(player);
 			}
