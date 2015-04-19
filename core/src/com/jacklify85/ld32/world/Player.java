@@ -27,6 +27,10 @@ public class Player extends EntityBase{
 			RenderUtils.drawTexture(LDGame.playerDown, this.getX(), this.getY());
 			break;
 		}
+		case 0: {
+			RenderUtils.drawTexture(LDGame.playerUp, this.getX(), this.getY());
+			break;
+		}
 		default: {
 			RenderUtils.drawTexture(LDGame.player, this.getX(), this.getY());
 			break;
