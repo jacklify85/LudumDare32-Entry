@@ -25,10 +25,11 @@ public class LDGame extends Game {
 	public static Texture zombie = null;
 	public static Texture bullet = null;
 	public static Texture ammoPickup = null;
+	public static Texture maxhealthPickup = null;
 	
 	// Stage2d
 	private Stage stage = null;
-	private Label fpsLabel, healthLabel, scoreLabel, ammoLabel = null;
+	private Label fpsLabel, healthLabel, scoreLabel, ammoLabel, posLabel = null;
 	
 	@Override
 	public void create () {
@@ -56,11 +57,14 @@ public class LDGame extends Game {
 	    this.scoreLabel.setPosition(10, 40);
 	    this.ammoLabel = new Label("Remaining Ammunition: 0 Bullets", lstyle);
 	    this.ammoLabel.setPosition(10, 60);
+	    this.posLabel = new Label("Position: (X: 0; Y:0", lstyle);
+	    this.posLabel.setPosition(10,  80);
 	    
 	    this.stage.addActor(this.fpsLabel);
 	    this.stage.addActor(this.healthLabel);
 	    this.stage.addActor(this.scoreLabel);
 	    this.stage.addActor(this.ammoLabel);
+	    this.stage.addActor(this.posLabel);
 	    
 		// Init BOX2D
 		Box2D.init();
@@ -69,6 +73,8 @@ public class LDGame extends Game {
 		zombie = new Texture("zombie.png");
 		bullet = new Texture("bullet.png");
 		ammoPickup = new Texture("AmmoPickup.png");
+		maxhealthPickup = new Texture("MaxHealthPickup.png");
+		
 		// set screen to game screen
 		this.setScreen(new GameScreen(this));
 	}
@@ -84,6 +90,7 @@ public class LDGame extends Game {
 		this.healthLabel.setText("Health: " + GameScreen.player.getHealth() + " / " + GameScreen.player.getMaxHealth());
 		this.scoreLabel.setText("Score: " + GameScreen.score);
 		this.ammoLabel.setText("Remaining Ammunition: " + GameScreen.player.weapon.ammo + " bullets");
+		this.posLabel.setText("Position: (X: " + GameScreen.player.getX() + "; Y: " + GameScreen.player.getY() + ")");
 		stage.act();
 		super.render();
 		stage.draw();

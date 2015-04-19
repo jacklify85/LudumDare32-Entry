@@ -22,7 +22,6 @@ public class UnconventionalBullet extends EntityBase implements Poolable{
 	public void update() {
 		elapsedCycles++;
 		if (elapsedCycles >= maxCycles) {
-			System.out.println("Cycles elapsed. Count = " + elapsedCycles);
 			this.setHealth(0);
 		}
 		if (!isUsingTarget) {

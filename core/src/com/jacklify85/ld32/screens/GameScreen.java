@@ -8,6 +8,7 @@ import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.jacklify85.ld32.LDGame;
 import com.jacklify85.ld32.pickups.AmmoPickup;
@@ -63,13 +64,13 @@ public class GameScreen implements Screen{
 	public void render(float delta) {
 		doInput();
 		// Set projection matrix and render
-	//	this.camera.position.set(GameScreen.player.getPosition(), this.camera.position.z);
-	//	this.camera.update();
+		this.camera.position.set(GameScreen.player.getPosition(), this.camera.position.z);
+		this.camera.update();
 		RenderUtils.setMatrix(this.camera.combined);
 		RenderUtils.beginRendering();
 		//////////////////
 		if (!this.isPaused) {
-			this.box2d.render(world.world, this.camera.combined);
+			//this.box2d.render(world.world, this.camera.combined);
 			GameScreen.world.render();
 			if (GameScreen.alive == false) {
 				// player died, show dead screen
@@ -116,7 +117,9 @@ public class GameScreen implements Screen{
 		if (Gdx.input.isTouched()) {
 			int xPos = Gdx.input.getX();
 			int yPos = Gdx.input.getY();
-			
+		
+			xPos += this.camera.position.x;
+			yPos += this.camera.position.y;
 			
 			player.weapon.use(xPos, yPos);
 		}
