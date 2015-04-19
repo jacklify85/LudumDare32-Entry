@@ -3,11 +3,13 @@ package com.jacklify85.ld32.world;
 import com.jacklify85.ld32.LDGame;
 import com.jacklify85.ld32.ai.Pathfinder;
 import com.jacklify85.ld32.screens.GameScreen;
+import com.jacklify85.ld32.util.AudioUtil;
 import com.jacklify85.ld32.util.RenderUtils;
 
 public class Zombie extends EntityBase{
 
 	private Pathfinder pFinder = null;
+	private boolean ignited = false;
 	
 	public Zombie(float x, float y, int id) {
 		super(x, y, 50, 50, id);
@@ -39,11 +41,18 @@ public class Zombie extends EntityBase{
 				GameScreen.world.doMovement(this, this.getX(), this.getY() - 0.6f);
 			}
 		}
+		
+		if (this.ignited) {
+			this.damage(0.1f);
+		}
 	}
 
 	@Override
 	public void draw() {
 		RenderUtils.drawTexture(LDGame.zombie, this.getX(), this.getY());
+		
+		if (this.ignited) {
+		}
 	}
 
 	@Override
@@ -59,10 +68,10 @@ public class Zombie extends EntityBase{
 	@Override
 	protected void died() {
 		GameScreen.score += 30;
+		AudioUtil.playEffect(LDGame.zombieDie);
 	}
 
 	public void ignite() {
-		
+		this.ignited = true;
 	}
-
 }

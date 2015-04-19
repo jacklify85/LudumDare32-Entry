@@ -27,10 +27,12 @@ public class LDGame extends Game {
 	public static Texture ammoPickup = null;
 	public static Texture maxhealthPickup = null;
 	public static Texture speedPickup = null;
+	public static Texture fire = null;
 	
 	public static Sound hitSound = null;
 	public static Sound powerupSound = null;
 	public static Sound playerHurt = null;
+	public static Sound zombieDie = null;
 	
 	public static Music gameOver = null;
 	
@@ -103,10 +105,12 @@ public class LDGame extends Game {
 		ammoPickup = new Texture("AmmoPickup.png");
 		maxhealthPickup = new Texture("MaxHealthPickup.png");
 		speedPickup = new Texture("SpeedBoost.png");
+		fire = new Texture("fire.png");
 		
 		hitSound = Gdx.audio.newSound(Gdx.files.internal("EntityHit.wav"));
 		powerupSound = Gdx.audio.newSound(Gdx.files.internal("Powerup.wav"));
 		playerHurt = Gdx.audio.newSound(Gdx.files.internal("BWU.wav"));
+		zombieDie = Gdx.audio.newSound(Gdx.files.internal("ZombieDie.wav"));
 		
 		gameOver = Gdx.audio.newMusic(Gdx.files.internal("bu-shields-of-puppies.ogg"));
 		// set screen to game screen
