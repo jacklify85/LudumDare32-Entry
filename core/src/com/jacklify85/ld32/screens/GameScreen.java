@@ -74,10 +74,11 @@ public class GameScreen implements Screen{
 		//////////////////
 		if (!this.isPaused) {
 			//this.box2d.render(world.world, this.camera.combined);
-			GameScreen.world.render();
 			if (GameScreen.alive == false) {
 				// player died, show dead screen
-				this.game.setScreen(new DeadScreen(score));
+				RenderUtils.endGameScreen(score);
+			} else {
+				GameScreen.world.render();
 			}
 		} else {
 			RenderUtils.renderText("Game is paused! To resume press escape!", 50, 25);

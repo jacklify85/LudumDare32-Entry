@@ -2,6 +2,7 @@ package com.jacklify85.ld32;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.FPSLogger;
@@ -15,10 +16,6 @@ import com.jacklify85.ld32.screens.GameScreen;
 import com.jacklify85.ld32.util.RenderUtils;
 
 public class LDGame extends Game {
-	
-	// Do some logging
-	private FPSLogger logger;
-	
 	// Asset management (crappy)
 	
 	public static Texture player = null;
@@ -32,9 +29,14 @@ public class LDGame extends Game {
 	public static Sound hitSound = null;
 	public static Sound powerupSound = null;
 	
+	public static Music gameOver = null;
+	
+	
 	// Stage2d
 	private Stage stage = null;
 	private Label fpsLabel, healthLabel, scoreLabel, ammoLabel, posLabel, waveLabel, remainingLabel = null;
+
+	private boolean died;
 	
 	@Override
 	public void create () {
@@ -44,7 +46,6 @@ public class LDGame extends Game {
 		Gdx.app.log("LDGAME", "Platform Version: " + Gdx.app.getVersion());
 		Gdx.app.log("LDGAME", "Native Heap: " + Gdx.app.getNativeHeap());
 		Gdx.app.log("LDGAME", "Java Heap: " + Gdx.app.getJavaHeap());
-		this.logger = new FPSLogger();
 		
 		// create stage
 		this.stage = new Stage();
@@ -99,20 +100,27 @@ public class LDGame extends Game {
 
 	@Override
 	public void render () {
-		this.logger.log();
 		Gdx.gl.glClearColor(0, 0, 0, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		// Start rendering
-		this.fpsLabel.setText("FPS: " + Gdx.graphics.getFramesPerSecond());
-		this.healthLabel.setText("Health: " + GameScreen.player.getHealth() + " / " + GameScreen.player.getMaxHealth());
-		this.scoreLabel.setText("Score: " + GameScreen.score);
-		this.ammoLabel.setText("Remaining Ammunition: " + GameScreen.player.weapon.ammo + " bullets");
-		this.posLabel.setText("Position: (X: " + GameScreen.player.getX() + "; Y: " + GameScreen.player.getY() + ")");
-		this.waveLabel.setText("Wave: " + GameScreen.wave);
-		this.remainingLabel.setText("Zombies Remaining: " + GameScreen.world.zombiesRemaining);
+		if (!died) {
+			this.fpsLabel.setText("FPS: " + Gdx.graphics.getFramesPerSecond());
+			this.healthLabel.setText("Health: " + GameScreen.player.getHealth() + " / " + GameScreen.player.getMaxHealth());
+			this.scoreLabel.setText("Score: " + GameScreen.score);
+			this.ammoLabel.setText("Remaining Ammunition: " + GameScreen.player.weapon.ammo + " bullets");
+			this.posLabel.setText("Position: (X: " + GameScreen.player.getX() + "; Y: " + GameScreen.player.getY() + ")");
+			this.waveLabel.setText("Wave: " + GameScreen.wave);
+			this.remainingLabel.setText("Zombies Remaining: " + GameScreen.world.zombiesRemaining);
+		} else {
+			
+		}
 		stage.act();
-		super.render();
+		super.render(); 
 		stage.draw();
+	}
+
+	public void playerDied() {
+		this.died = true;
 	}
 }

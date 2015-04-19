@@ -1,5 +1,6 @@
 package com.jacklify85.ld32.util;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -36,5 +37,12 @@ public class RenderUtils {
 
 	public static BitmapFont getFont() {
 		return bDefaultFont;
+	}
+	
+	public static void endGameScreen(int score) {
+		bDefaultFont.setColor(Color.ORANGE);
+		bDefaultFont.draw(sBatch, "You DIED! Your score was: " + score + "Thanks for playing!", 100, 100);
+		bDefaultFont.draw(sBatch, "Press 'ENTER' to start a NEW GAME!", 100, 80);
+		bDefaultFont.setColor(Color.WHITE);
 	}
 }

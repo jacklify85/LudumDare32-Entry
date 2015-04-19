@@ -15,8 +15,6 @@ import com.jacklify85.ld32.world.UnconventionalBullet;
 import com.jacklify85.ld32.world.Zombie;
 
 public class Box2DContactManager implements ContactListener {
-
-	public static boolean isContacted = false;
 	
 	@Override
 	public void beginContact(Contact contact) {
@@ -32,8 +30,10 @@ public class Box2DContactManager implements ContactListener {
 		} else if (gObjectA instanceof Player) {
 			if (gObjectB instanceof Zombie) {
 				Player player = (Player)gObjectA;
-				player.damage(3);
-				isContacted = true;
+				player.damage(10);
+				player.setMaxHealth(player.getMaxHealth() - 3);
+				Zombie zombie = (Zombie)gObjectB;
+				zombie.setHealth(0);
 			} else if (gObjectB instanceof PickupBase) {
 				Player player = (Player)gObjectA;
 				// prevent player from using health boost pickup if health is full
@@ -47,8 +47,10 @@ public class Box2DContactManager implements ContactListener {
 		} else if (gObjectA instanceof Zombie) {
 			if (gObjectB instanceof Player) {
 				Player player = (Player)gObjectB;
-				player.damage(3);
-				isContacted = true;
+				player.damage(10);
+				player.setMaxHealth(player.getMaxHealth() - 3);
+				Zombie zombie = (Zombie)gObjectB;
+				zombie.setHealth(0);
 			} else if (gObjectB instanceof UnconventionalBullet) {
 				Zombie zombie = (Zombie)gObjectA;
 				zombie.damage(10);
@@ -76,7 +78,7 @@ public class Box2DContactManager implements ContactListener {
 
 	@Override
 	public void endContact(Contact contact) {
-		isContacted = false;
+		
 	}
 
 	@Override

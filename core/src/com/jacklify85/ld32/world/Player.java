@@ -1,7 +1,6 @@
 package com.jacklify85.ld32.world;
 
 import com.jacklify85.ld32.LDGame;
-import com.jacklify85.ld32.physics.Box2DContactManager;
 import com.jacklify85.ld32.screens.GameScreen;
 import com.jacklify85.ld32.util.RenderUtils;
 import com.jacklify85.ld32.weapons.UnconventionalWeapon;
@@ -18,9 +17,7 @@ public class Player extends EntityBase{
 
 	@Override
 	public void update() {
-		if (Box2DContactManager.isContacted) {
-			this.damage(0.02f);
-		}
+		
 	}
 
 	@Override
