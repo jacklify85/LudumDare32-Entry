@@ -28,6 +28,7 @@ public class LDGame extends Game {
 	public static Texture maxhealthPickup = null;
 	public static Texture speedPickup = null;
 	public static Texture fire = null;
+	public static Texture playerDown = null;
 	
 	public static Sound hitSound = null;
 	public static Sound powerupSound = null;
@@ -108,6 +109,7 @@ public class LDGame extends Game {
 		maxhealthPickup = new Texture("MaxHealthPickup.png");
 		speedPickup = new Texture("SpeedBoost.png");
 		fire = new Texture("fire.png");
+		playerDown = new Texture("PlayerDown.png");
 		
 		hitSound = Gdx.audio.newSound(Gdx.files.internal("EntityHit.wav"));
 		powerupSound = Gdx.audio.newSound(Gdx.files.internal("Powerup.wav"));

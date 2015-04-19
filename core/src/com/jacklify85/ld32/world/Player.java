@@ -22,7 +22,16 @@ public class Player extends EntityBase{
 
 	@Override
 	public void draw() {
-		RenderUtils.drawTexture(LDGame.player, this.getX(), this.getY());
+		switch (this.direction) {
+		case 1: {
+			RenderUtils.drawTexture(LDGame.playerDown, this.getX(), this.getY());
+			break;
+		}
+		default: {
+			RenderUtils.drawTexture(LDGame.player, this.getX(), this.getY());
+			break;
+		}
+		}
 	}
 
 	@Override
