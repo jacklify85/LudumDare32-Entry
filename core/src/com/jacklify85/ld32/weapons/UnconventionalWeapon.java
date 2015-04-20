@@ -7,11 +7,10 @@ import com.jacklify85.ld32.world.UnconventionalBullet;
 
 public class UnconventionalWeapon implements IWeapon{
 
-	public int ammo = 150;
+	public int ammo = 200;
 	
 	@Override
 	public void draw() {
-		// TODO Auto-generated method stub
 		
 	}
 

@@ -9,7 +9,7 @@ import com.jacklify85.ld32.util.RenderUtils;
 public class UnconventionalBullet extends EntityBase implements Poolable{
 	private int direction = 0;
 	
-	private final int maxCycles = 60 * 2;
+	private final int maxCycles = 60 * 4;
 	private int elapsedCycles = 0;
 	private boolean isUsingTarget = false;
 	private PositionPathfinder pFinder = null;

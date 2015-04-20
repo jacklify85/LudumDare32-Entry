@@ -25,7 +25,7 @@ public class WaveManagementThread implements Runnable{
 		while (GameScreen.alive) {
 			while (GameScreen.world.zombiesRemaining > 0 || !GameScreen.go) {
 				cycles++;
-				if (cycles >= 10) {
+				if (cycles >= 7) {
 					cycles = 0;
 					float posX = GameScreen.player.getX() + (rand.nextInt(25) * rand.nextInt(3) * rand.nextFloat());
 					float posY = GameScreen.player.getY() + (rand.nextInt(30) * rand.nextFloat());

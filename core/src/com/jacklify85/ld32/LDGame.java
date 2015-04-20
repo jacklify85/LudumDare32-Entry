@@ -43,7 +43,7 @@ public class LDGame extends Game {
 	
 	// Stage2d
 	private Stage stage = null;
-	private Label fpsLabel, healthLabel, scoreLabel, ammoLabel, posLabel, waveLabel, remainingLabel, endLabel = null;
+	private Label fpsLabel, healthLabel, scoreLabel, ammoLabel, posLabel, waveLabel, remainingLabel, endLabel, pauseLabel = null;
 
 	private boolean died;
 	
@@ -90,6 +90,9 @@ public class LDGame extends Game {
 	    this.endLabel = new Label("You've been eaten! You're score was: SCORE Thanks for playing! Press 'ENTER' to start a new game.", lstyle);
 	    this.endLabel.setPosition(100, 100);
 	    this.endLabel.setVisible(false);
+	    this.pauseLabel = new Label("Game has been paused! Press the 'ESCAPE' key to continue!", lstyle);
+	    this.pauseLabel.setPosition(100, 150);
+	    this.pauseLabel.setVisible(false);
 	    
 	    this.stage.addActor(this.fpsLabel);
 	    this.stage.addActor(this.healthLabel);
@@ -99,6 +102,7 @@ public class LDGame extends Game {
 	    this.stage.addActor(this.waveLabel);
 	    this.stage.addActor(this.remainingLabel);
 		this.stage.addActor(this.endLabel);
+		this.stage.addActor(this.pauseLabel);
 	    
 		// Init BOX2D
 		Box2D.init();
@@ -184,5 +188,13 @@ public class LDGame extends Game {
 		this.waveLabel.setVisible(false);
 		this.remainingLabel.setVisible(false);
 		this.scoreLabel.setVisible(false);
+	}
+	
+	public void callPause() {
+		this.pauseLabel.setVisible(true);
+	}
+	
+	public void callResume() {
+		this.pauseLabel.setVisible(false);
 	}
 }

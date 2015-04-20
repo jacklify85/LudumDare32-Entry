@@ -54,22 +54,22 @@ public class GameScreen implements Screen{
 		    GameScreen.world.addObject(zombie);
 		}
 		
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 5; i++) {
 			HealthPickup hPickup = new HealthPickup(random.nextInt(500), random.nextInt(300));
 			GameScreen.world.addObject(hPickup);
 		}
 		
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 5; i++) {
 			AmmoPickup aPickup = new AmmoPickup(random.nextInt(500), random.nextInt(300));
 			GameScreen.world.addObject(aPickup);
 		}
 		
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 5; i++) {
 			HealthBoostPickup hbPickup = new HealthBoostPickup(random.nextInt(500), random.nextInt(400));
 			GameScreen.world.addObject(hbPickup);
 		}
 		
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 5; i++) {
 			SpeedPickup sPickup = new SpeedPickup(random.nextInt(500), random.nextInt(600));
 			GameScreen.world.addObject(sPickup);
 		}
@@ -104,8 +104,6 @@ public class GameScreen implements Screen{
 			} else {
 				GameScreen.world.render();
 			}
-		} else {
-			RenderUtils.renderText("Game is paused! To resume press escape!", 50, 25);
 		}
 		/////////////////
 		RenderUtils.stopRendering();
@@ -179,6 +177,12 @@ public class GameScreen implements Screen{
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			// Pause game or unpause
 			this.isPaused = !this.isPaused;
+			
+			if (this.isPaused) {
+				this.game.callPause();
+			} else {
+				this.game.callResume();
+			}
 		}
 		
 		if (Gdx.input.isTouched()) {
@@ -203,11 +207,11 @@ public class GameScreen implements Screen{
 	@Override
 	public void pause() {
 		this.isPaused = true;
+		this.game.callPause();
 	}
 
 	@Override
 	public void resume() {
-		
 	}
 
 	@Override
