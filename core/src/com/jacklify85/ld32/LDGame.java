@@ -30,6 +30,7 @@ public class LDGame extends Game {
 	public static Texture fire = null;
 	public static Texture playerDown = null;
 	public static Texture playerUp = null;
+	public static Texture playerRight = null;
 	
 	public static Sound hitSound = null;
 	public static Sound powerupSound = null;
@@ -116,6 +117,7 @@ public class LDGame extends Game {
 		fire = new Texture("fire.png");
 		playerDown = new Texture("PlayerDown.png");
 		playerUp = new Texture("PlayerUp.png");
+		playerRight = new Texture("PlayerRight.png");
 		
 		hitSound = Gdx.audio.newSound(Gdx.files.internal("EntityHit.wav"));
 		powerupSound = Gdx.audio.newSound(Gdx.files.internal("Powerup.wav"));

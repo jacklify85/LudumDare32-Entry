@@ -27,6 +27,14 @@ public class Box2DContactManager implements ContactListener {
 				pickup.use(player);
 				AudioUtil.playEffect(LDGame.powerupSound);
 			}
+			if (gObjectB instanceof UnconventionalBullet) {
+				if (GameScreen.player.getHealth() == GameScreen.player.getMaxHealth() && gObjectB instanceof HealthPickup) {
+					return;
+				}
+				PickupBase pickup = (PickupBase)gObjectA;
+				pickup.use(GameScreen.player);
+				AudioUtil.playEffect(LDGame.powerupSound);
+			}
 		} else if (gObjectA instanceof Player) {
 			if (gObjectB instanceof Zombie) {
 				Player player = (Player)gObjectA;
@@ -74,8 +82,16 @@ public class Box2DContactManager implements ContactListener {
 				bullet.setHealth(0);
 				AudioUtil.playEffect(LDGame.hitSound);
 			}
+			if (gObjectB instanceof PickupBase) {
+				// prevent player from using health boost pickup if health is full
+				if (GameScreen.player.getHealth() == GameScreen.player.getMaxHealth() && gObjectB instanceof HealthPickup) {
+					return;
+				}
+				PickupBase pBase = (PickupBase)gObjectB;
+				pBase.use(GameScreen.player);
+				AudioUtil.playEffect(LDGame.powerupSound);
+			}
 		}
-		
 	}
 
 	@Override
