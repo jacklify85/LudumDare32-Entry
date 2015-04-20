@@ -30,7 +30,7 @@ public class Box2DContactManager implements ContactListener {
 		} else if (gObjectA instanceof Player) {
 			if (gObjectB instanceof Zombie) {
 				Player player = (Player)gObjectA;
-				player.damage(10);
+				player.damage(5);
 				player.setMaxHealth(player.getMaxHealth() - 3);
 				Zombie zombie = (Zombie)gObjectB;
 				zombie.setHealth(0);
@@ -48,7 +48,7 @@ public class Box2DContactManager implements ContactListener {
 		} else if (gObjectA instanceof Zombie) {
 			if (gObjectB instanceof Player) {
 				Player player = (Player)gObjectB;
-				player.damage(10);
+				player.damage(5);
 				player.setMaxHealth(player.getMaxHealth() - 3);
 				Zombie zombie = (Zombie)gObjectB;
 				zombie.setHealth(0);
