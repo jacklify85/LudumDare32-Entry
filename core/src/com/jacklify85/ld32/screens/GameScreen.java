@@ -54,22 +54,22 @@ public class GameScreen implements Screen{
 		    GameScreen.world.addObject(zombie);
 		}
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 4; i++) {
 			HealthPickup hPickup = new HealthPickup(random.nextInt(500), random.nextInt(300));
 			GameScreen.world.addObject(hPickup);
 		}
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 4; i++) {
 			AmmoPickup aPickup = new AmmoPickup(random.nextInt(500), random.nextInt(300));
 			GameScreen.world.addObject(aPickup);
 		}
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 3; i++) {
 			HealthBoostPickup hbPickup = new HealthBoostPickup(random.nextInt(500), random.nextInt(400));
 			GameScreen.world.addObject(hbPickup);
 		}
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 3; i++) {
 			SpeedPickup sPickup = new SpeedPickup(random.nextInt(500), random.nextInt(600));
 			GameScreen.world.addObject(sPickup);
 		}

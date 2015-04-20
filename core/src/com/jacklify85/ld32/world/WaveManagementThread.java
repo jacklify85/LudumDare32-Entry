@@ -29,6 +29,13 @@ public class WaveManagementThread implements Runnable{
 					cycles = 0;
 					float posX = GameScreen.player.getX() + (rand.nextInt(25) * rand.nextInt(3) * rand.nextFloat());
 					float posY = GameScreen.player.getY() + (rand.nextInt(30) * rand.nextFloat());
+					// prevent player from instant getting pickups
+					if (Math.abs(GameScreen.player.getX() - posX) < 20) {
+						posX += 10;
+					}
+					if (Math.abs(GameScreen.player.getY() - posY) < 20) {
+						posY += 10;
+					}
 					int pickup = rand.nextInt(5);
 					if (pickup == 0 || pickup == 1) {
 						AmmoPickup aPickup = new AmmoPickup(posX, posY);
@@ -65,6 +72,15 @@ public class WaveManagementThread implements Runnable{
 			for (int i = 0; i < randamt; i++) {
 				float posX = GameScreen.player.getX() + (rand.nextInt(1000) * rand.nextInt(3) * rand.nextFloat());
 				float posY = GameScreen.player.getY() + (rand.nextInt(1000) * rand.nextFloat());
+				
+				// Prevent zombies from instantly attacking player
+				if (Math.abs(GameScreen.player.getX() - posX) < 20) {
+					posX += 10;
+				}
+				if (Math.abs(GameScreen.player.getY() - posY) < 20) {
+					posY += 10;
+				}
+				
 				Zombie zombie = new Zombie(posX, posY, (int)posX);
 				this.gScreen.objsToBeAdded.add(zombie);
 				try {
