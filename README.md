@@ -29,5 +29,6 @@ Requirements:
 Credits: 
 - The libGDX project and related extensions for their amazing framework that powers Super ZDefeat! 
 - The box2d project for their amazing physics engine 
+- autotracker.py for their awesome music generator script!
 
 
