@@ -185,7 +185,7 @@ public class GameScreen implements Screen{
 			}
 		}
 		
-		if (Gdx.input.isTouched()) {
+	/*	if (Gdx.input.isTouched()) {
 			int xPos = Gdx.input.getX();
 			int yPos = Gdx.input.getY();
 		
@@ -193,7 +193,7 @@ public class GameScreen implements Screen{
 			yPos += this.camera.position.y;
 			
 			player.weapon.use(xPos, yPos);
-		}
+		} */
 		if (Gdx.input.isKeyPressed(Keys.SPACE)) {
 			player.weapon.use();            
 		}
